@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Running Performance Pyramid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0F1A14;
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+  }
+  .page {
+    max-width: 860px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #7EC896;
+    margin-bottom: 10px;
+  }
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    color: #F0EDE6;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .title em { font-style: italic; color: #7EC896; }
+  .subtitle {
+    font-size: 14px;
+    color: #7A8C80;
+    font-weight: 300;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+  .pyramid-svg-wrap {
+    width: 100%;
+    max-width: 700px;
+    animation: fadeUp 0.9s ease 0.15s both;
+  }
+  svg.pyramid { width: 100%; height: auto; overflow: visible; }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px 32px;
+    margin-top: 28px;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #8A9E90;
+  }
+  .legend-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    margin-top: 36px;
+    width: 100%;
+    animation: fadeUp 0.8s ease 0.65s both;
+  }
+  .card {
+    background: #1A2A1F;
+    border: 1px solid #2A3D2F;
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .card-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 15px; color: #F0EDE6; }
+  .card-body { font-size: 12px; color: #6A7E70; line-height: 1.6; font-weight: 300; }
+  .footer {
+    margin-top: 28px;
+    font-size: 10px;
+    color: #3A4E40;
+    letter-spacing: 0.12em;
+    text-align: center;
+    animation: fadeUp 0.8s ease 0.8s both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <p class="eyebrow">Run Club · Training Education</p>
+    <h1 class="title">The Running<br><em>Performance Pyramid</em></h1>
+    <p class="subtitle">Build from the bottom up. Every layer depends on the one beneath it.</p>
+  </div>
+
+  <div class="pyramid-svg-wrap">
+  <svg class="pyramid" viewBox="0 0 700 530" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#1E5C3A"/>
+        <stop offset="50%" stop-color="#2D8A5A"/>
+        <stop offset="100%" stop-color="#3DAD72"/>
+      </linearGradient>
+      <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#2A5C1E"/>
+        <stop offset="50%" stop-color="#4A8A30"/>
+        <stop offset="100%" stop-color="#62A844"/>
+      </linearGradient>
+      <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#B86820"/>
+        <stop offset="50%" stop-color="#D98030"/>
+        <stop offset="100%" stop-color="#F09A48"/>
+      </linearGradient>
+      <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#9A2018"/>
+        <stop offset="50%" stop-color="#C03828"/>
+        <stop offset="100%" stop-color="#D85040"/>
+      </linearGradient>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+        <path d="M0,1 L7,4 L0,7 Z" fill="#3A5440"/>
+      </marker>
+    </defs>
+
+    <!-- ══ LAYER 1: AEROBIC BASE (bottom) ══ -->
+    <!-- Triangle slice: y 390–490, left edge 40,490 → 130,390; right edge 660,490 → 570,390 -->
+    <polygon points="40,490 660,490 570,390 130,390" fill="url(#g1)"/>
+    <!-- dividing line -->
+    <line x1="124" y1="390" x2="576" y2="390" stroke="#0F1A14" stroke-width="4"/>
+
+    <!-- ══ LAYER 2: STRENGTH & CONDITIONING ══ -->
+    <!-- y 270–390, left 130,390→220,270; right 570,390→480,270 -->
+    <polygon points="130,390 570,390 480,270 220,270" fill="url(#g2)"/>
+    <line x1="214" y1="270" x2="486" y2="270" stroke="#0F1A14" stroke-width="4"/>
+
+    <!-- ══ LAYER 3: ANAEROBIC / INTERVALS ══ -->
+    <!-- y 150–270, left 220,270→310,150; right 480,270→390,150 -->
+    <polygon points="220,270 480,270 390,150 310,150" fill="url(#g3)"/>
+    <line x1="306" y1="150" x2="394" y2="150" stroke="#0F1A14" stroke-width="4"/>
+
+    <!-- ══ LAYER 4: PEAK SPEED / RACE ══ -->
+    <!-- y 30–150, left 310,150→350,30; right 390,150→350,30 -->
+    <polygon points="310,150 390,150 350,30" fill="url(#g4)"/>
+
+    <!-- outer stroke -->
+    <polygon points="350,30 40,490 660,490" fill="none" stroke="#2A3D2F" stroke-width="2.5"/>
+
+    <!-- ══ INNER TEXT — LAYER 1 ══ -->
+    <text x="350" y="424" text-anchor="middle"
+      font-family="'Playfair Display', serif" font-size="21" fill="#C8F0DC" letter-spacing="0.5">Aerobic Base</text>
+    <text x="350" y="448" text-anchor="middle"
+      font-family="'Outfit', sans-serif" font-size="12" fill="#90CCA8" font-weight="300" letter-spacing="0.6">Zone 2 · Easy conversational running · ~70% of training</text>
+    <text x="350" y="468" text-anchor="middle"
+      font-family="'Outfit', sans-serif" font-size="10.5" fill="#6AB890" font-weight="300">60–70% max HR · builds mitochondria &amp; your fat-burning engine</text>
+
+    <!-- ══ INNER TEXT — LAYER 2 ══ -->
+    <text x="350" y="314" text-anchor="middle"
+      font-family="'Playfair Display', serif" font-size="18" fill="#DAFFD0" letter-spacing="0.4">Strength &amp; Conditioning</text>
+    <text x="350" y="336" text-anchor="middle"
+      font-family="'Outfit', sans-serif" font-size="11" fill="#AADDA0" font-weight="300" letter-spacing="0.4">Hills · gym work · drills · strides · ~15% of training</text>
+    <text x="350" y="355" text-anchor="middle"
+      font-family="'Outfit', sans-serif" font-size="10" fill="#88C880" font-weight="300">builds running economy &amp; injury resistance</text>
+
+    <!-- ══ INNER TEXT — LAYER 3 ══ -->
+    <text x="350" y="204" text-anchor="middle"
+      font-family="'Playfair Display', serif" font-size="16" fill="#FFF0DC" letter-spacing="0.3">Anaerobic &amp; Intervals</text>
+    <text x="350" y="224" text-anchor="middle"
+      font-family="'Outfit', sans-serif" font-size="10.5" fill="#F0D0A0" font-weight="300">Tempo · VO₂ max · track sessions · ~10%</text>
+    <text x="350" y="242" text-anchor="middle"
+      font-family="'Outfit', sans-serif" font-size="9.5" fill="#D4B880" font-weight="300">raises lactate threshold &amp; aerobic ceiling</text>
+
+    <!-- ══ INNER TEXT — LAYER 4 ══ -->
+    <text x="350" y="106" text-anchor="middle"
+      font-family="'Playfair Display', serif" font-size="11.5" fill="#FFE4DC" letter-spacing="0.3">Peak Speed</text>
+    <text x="350" y="124" text-anchor="middle"
+      font-family="'Outfit', sans-serif" font-size="9.5" fill="#FFC8BC" font-weight="300">Race &amp; Sprint · ~5%</text>
+
+    <!-- ══ LEFT SIDE: % OF TRAINING ══ -->
+    <g font-family="'Outfit', sans-serif" fill="#4A7260" font-size="11" font-weight="500">
+      <text x="22" y="445" text-anchor="end">70%</text>
+      <text x="22" y="338" text-anchor="end">15%</text>
+      <text x="22" y="225" text-anchor="end">10%</text>
+      <text x="22" y="112" text-anchor="end">5%</text>
+    </g>
+    <g stroke="#2A4030" stroke-width="1.5">
+      <line x1="24" y1="441" x2="38" y2="441"/>
+      <line x1="24" y1="334" x2="38" y2="334"/>
+      <line x1="24" y1="221" x2="38" y2="221"/>
+      <line x1="24" y1="108" x2="38" y2="108"/>
+    </g>
+    <text x="12" y="300" text-anchor="middle"
+      font-family="'Outfit', sans-serif" font-size="9" fill="#2A4030" font-weight="600"
+      letter-spacing="0.15em" transform="rotate(-90 12 300)">% OF TRAINING VOLUME</text>
+
+    <!-- ══ RIGHT SIDE: INTENSITY ARROW ══ -->
+    <line x1="672" y1="478" x2="672" y2="48" stroke="#3A5440" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="688" y="488" font-family="'Outfit', sans-serif" font-size="9" fill="#3A5440" font-weight="600" letter-spacing="0.12em">LOW</text>
+    <text x="688" y="58" font-family="'Outfit', sans-serif" font-size="9" fill="#3A5440" font-weight="600" letter-spacing="0.12em">HIGH</text>
+    <text x="696" y="280" font-family="'Outfit', sans-serif" font-size="9" fill="#3A5440" font-weight="500" letter-spacing="0.14em" transform="rotate(90 696 280)">INTENSITY</text>
+
+    <!-- ══ BOTTOM TAG ══ -->
+    <text x="350" y="514" text-anchor="middle"
+      font-family="'Outfit', sans-serif" font-size="10" fill="#3DAD72"
+      font-weight="600" letter-spacing="0.2em">★  BUILD FROM HERE  ★</text>
+
+  </svg>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:#2D8A5A;"></div>Aerobic Base (Zone 2)</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#4A8A30;"></div>Strength &amp; Conditioning</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#D98030;"></div>Anaerobic &amp; Intervals</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#C03828;"></div>Peak Speed &amp; Racing</div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="cards">
+    <div class="card">
+      <div class="card-top"><div class="card-dot" style="background:#2D8A5A;"></div><div class="card-title">The Foundation</div></div>
+      <div class="card-body">Zone 2 runs develop your aerobic engine — more mitochondria, better fat burning, improved cardiac output. Without a wide base, the upper layers crumble. This is why we run slow to eventually run fast.</div>
+    </div>
+    <div class="card">
+      <div class="card-top"><div class="card-dot" style="background:#4A8A30;"></div><div class="card-title">Strength Layer</div></div>
+      <div class="card-body">Hill repeats, gym work, drills, and strides build running economy and injury resilience. A stronger body converts every aerobic adaptation into faster, more efficient movement on race day.</div>
+    </div>
+    <div class="card">
+      <div class="card-top"><div class="card-dot" style="background:#D98030;"></div><div class="card-title">Intervals &amp; Threshold</div></div>
+      <div class="card-body">Tempo runs and track intervals raise your lactate threshold and VO₂ max ceiling. These only work well once the base and strength layers are solid — otherwise they just accumulate fatigue.</div>
+    </div>
+    <div class="card">
+      <div class="card-top"><div class="card-dot" style="background:#C03828;"></div><div class="card-title">Peak &amp; Race</div></div>
+      <div class="card-body">Sprint work, race-pace efforts, and competition sit at the top. This is the reward for building every layer below correctly. A wider base means a higher, more sustainable peak.</div>
+    </div>
+  </div>
+
+  <div class="footer" style="margin-top:28px;">
+    Polarised Training Model · 80/20 Method · Lydiard Periodisation
+  </div>
+
+</div>
+</body>
+</html>
