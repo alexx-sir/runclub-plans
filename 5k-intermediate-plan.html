@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5K Stronger — Intermediate Run Club Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F2EEE8;
+    --ink: #18140F;
+    --card: #FDFAF5;
+    --border: #DDD7CC;
+    --muted: #857C6E;
+    --accent: #C4440A;
+    --accent-light: #FDF0EB;
+    --teal: #0A7B6C;
+    --teal-light: #E6F4F2;
+    --gold: #B07D0A;
+    --gold-light: #FDF6E3;
+    --blue: #1A4FA0;
+    --blue-light: #EBF0FA;
+    --tag-rest: #EEEAE3;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Crimson Pro', serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--accent);
+    padding: 60px 32px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '5K';
+    position: absolute;
+    right: -20px;
+    bottom: -40px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 240px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+  }
+  .hero-inner { max-width: 680px; }
+  .hero-eyebrow {
+    font-family: 'Archivo', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: clamp(38px, 7vw, 72px);
+    color: #FFF9F5;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin-bottom: 22px;
+  }
+  .hero-title em { font-style: italic; font-family: 'Crimson Pro', serif; font-weight: 300; }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+    max-width: 460px;
+    line-height: 1.65;
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 500px;
+  }
+  .hero-stat {
+    flex: 1;
+    min-width: 100px;
+    padding: 16px 20px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    text-align: center;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: #FFF9F5;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .hero-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+  }
+
+  /* ── LEVEL BADGE ── */
+  .level-bar {
+    background: var(--ink);
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .level-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .level-item.active { color: #F5C891; }
+  .level-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .level-item.active .level-num { background: #F5C891; color: var(--ink); border-color: #F5C891; }
+  .level-sep { color: rgba(255,255,255,0.2); font-size: 16px; }
+
+  /* ── MAIN ── */
+  .main { max-width: 980px; margin: 0 auto; padding: 44px 20px 64px; }
+
+  /* ── PROBLEM CALLOUT ── */
+  .problem-callout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+  .problem-card {
+    border-radius: 14px;
+    padding: 26px 28px;
+    border: 1.5px solid var(--border);
+  }
+  .problem-card.why { background: var(--card); }
+  .problem-card.fix { background: var(--ink); border-color: var(--ink); }
+  .pc-eyebrow {
+    font-family: 'Archivo', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .why .pc-eyebrow { color: var(--accent); }
+  .fix .pc-eyebrow { color: #F5C891; }
+  .pc-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 19px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .why .pc-title { color: var(--ink); }
+  .fix .pc-title { color: #FFF9F5; }
+  .pc-body {
+    font-size: 14.5px;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .why .pc-body { color: var(--muted); }
+  .fix .pc-body { color: rgba(255,255,255,0.6); }
+  .fix .pc-body strong { color: #F5C891; font-weight: 400; }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── WEEK TABS ── */
+  .week-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .tab {
+    padding: 7px 15px;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    background: white;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .tab:hover { border-color: var(--accent); color: var(--accent); }
+  .tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+  /* ── WEEK CARD ── */
+  .week-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: none;
+    animation: slideIn 0.28s ease;
+  }
+  .week-card.active { display: block; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .week-header {
+    padding: 26px 30px 22px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .week-num {
+    font-family: 'Archivo', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .week-focus {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .week-desc {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+    font-style: italic;
+    margin-top: 6px;
+    max-width: 460px;
+    line-height: 1.5;
+  }
+  .week-badge {
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-base     { background: var(--teal-light); color: var(--teal); }
+  .badge-build    { background: var(--gold-light); color: var(--gold); }
+  .badge-push     { background: var(--accent-light); color: var(--accent); }
+  .badge-recover  { background: var(--blue-light); color: var(--blue); }
+
+  /* ── DAYS GRID ── */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .day-col {
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+  }
+  .day-col:last-child { border-right: none; }
+  .day-name {
+    font-family: 'Archivo', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 10px 6px;
+    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .day-body {
+    padding: 14px 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    text-align: center;
+    min-height: 120px;
+    justify-content: center;
+  }
+  .day-type {
+    font-family: 'Archivo', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .type-easy   { background: var(--teal-light); color: var(--teal); }
+  .type-tempo  { background: var(--accent-light); color: var(--accent); }
+  .type-long   { background: var(--gold-light); color: var(--gold); }
+  .type-rest   { background: var(--tag-rest); color: #857C6E; }
+  .type-cross  { background: var(--blue-light); color: var(--blue); }
+  .type-interval { background: #F5EBF9; color: #7A1FA0; }
+  .type-race   { background: #FDECEA; color: #B91C1C; }
+
+  .day-duration {
+    font-family: 'Archivo', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .day-unit {
+    font-size: 9px;
+    color: var(--muted);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .day-detail {
+    font-size: 11px;
+    color: var(--ink);
+    line-height: 1.4;
+    font-style: italic;
+    font-weight: 300;
+  }
+  .day-effort {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── WEEK TIP ── */
+  .week-tip {
+    padding: 16px 30px;
+    border-top: 1px solid var(--border);
+    background: #FAFAF6;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .tip-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+  .tip-text { font-size: 13.5px; color: #5A5248; line-height: 1.55; font-style: italic; }
+  .tip-text strong { font-style: normal; font-weight: 600; color: var(--ink); }
+
+  /* ── TRAINING TYPES KEY ── */
+  .types-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    padding: 20px 0;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+  }
+  .key-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .key-tag {
+    font-family: 'Archivo', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .key-desc { font-size: 12px; color: var(--muted); line-height: 1.4; max-width: 180px; }
+
+  /* ── PROGRESS BAR ── */
+  .tracker { margin-top: 40px; }
+  .tracker-bar-wrap { background: var(--border); border-radius: 99px; height: 7px; overflow: hidden; margin: 10px 0 6px; }
+  .tracker-bar { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), #F07040); transition: width 0.4s ease; }
+  .tracker-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-family: 'Archivo', sans-serif; font-weight: 600; letter-spacing: 0.06em; }
+
+  @media (max-width: 640px) {
+    .problem-callout { grid-template-columns: 1fr; }
+    .days-grid { grid-template-columns: repeat(4, 1fr); }
+    .day-col:nth-child(4n) { border-right: none; }
+    .day-col { border-bottom: 1px solid var(--border); }
+    .hero { padding: 44px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Run Club · Intermediate Programme</p>
+    <h1 class="hero-title">Run 5K<br><em>Breathing Easy</em></h1>
+    <p class="hero-sub">You've already got the distance. Now we build the engine underneath it — so 5K feels effortless, not survival mode.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-label">Weeks</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">4×</div><div class="hero-stat-label">Per week</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">Zone 2</div><div class="hero-stat-label">Foundation</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">10K</div><div class="hero-stat-label">Stretch goal</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LEVEL BAR -->
+<div class="level-bar">
+  <div class="level-item"><div class="level-num">1</div> Beginner: First 5K</div>
+  <div class="level-sep">→</div>
+  <div class="level-item active"><div class="level-num">2</div> Intermediate: Breathe Easy</div>
+  <div class="level-sep">→</div>
+  <div class="level-item"><div class="level-num">3</div> Advanced: Race Fast</div>
+</div>
+
+<div class="main">
+
+  <!-- PROBLEM / FIX CARDS -->
+  <div class="problem-callout">
+    <div class="problem-card why">
+      <div class="pc-eyebrow">Why you get winded</div>
+      <div class="pc-title">You've been living in the "grey zone"</div>
+      <div class="pc-body">Most runners at this stage run every run at the same moderate pace — hard enough to be uncomfortable, not hard enough to produce real adaptations. Your aerobic base is underdeveloped. Your body hasn't built enough mitochondria to sustain effort efficiently, so it panics and reaches for anaerobic energy too early. The result: you're always slightly out of breath.</div>
+    </div>
+    <div class="problem-card fix">
+      <div class="pc-eyebrow">The fix</div>
+      <div class="pc-title">Slow way down to speed up</div>
+      <div class="pc-body">This plan is <strong>80% easy Zone 2 running</strong> — slower than you think is useful. The remaining 20% is purposeful: one weekly tempo or interval session to raise your lactate threshold. After 8 weeks, your easy pace will feel like what your hard pace feels like today.</div>
+    </div>
+  </div>
+
+  <!-- TRAINING TYPES KEY -->
+  <div class="types-key">
+    <div class="key-item">
+      <div class="key-tag type-easy">Easy Run</div>
+      <div class="key-desc">Zone 2. Full sentences. Feels almost too slow.</div>
+    </div>
+    <div class="key-item">
+      <div class="key-tag type-tempo">Tempo</div>
+      <div class="key-desc">Comfortably hard. 3–4 words per breath. Sustained.</div>
+    </div>
+    <div class="key-item">
+      <div class="key-tag type-interval">Intervals</div>
+      <div class="key-desc">Short, hard efforts with recovery. VO₂ max work.</div>
+    </div>
+    <div class="key-item">
+      <div class="key-tag type-long">Long Run</div>
+      <div class="key-desc">Zone 2 only. Building time on feet each week.</div>
+    </div>
+    <div class="key-item">
+      <div class="key-tag type-cross">Cross-train</div>
+      <div class="key-desc">Bike, swim, or strength. Aerobic without run stress.</div>
+    </div>
+  </div>
+
+  <!-- WEEK SELECTOR -->
+  <div class="section-title">Weekly Plan</div>
+  <div class="week-tabs">
+    <div class="tab active" onclick="showWeek(1,this)">Week 1</div>
+    <div class="tab" onclick="showWeek(2,this)">Week 2</div>
+    <div class="tab" onclick="showWeek(3,this)">Week 3</div>
+    <div class="tab" onclick="showWeek(4,this)">Week 4</div>
+    <div class="tab" onclick="showWeek(5,this)">Week 5</div>
+    <div class="tab" onclick="showWeek(6,this)">Week 6</div>
+    <div class="tab" onclick="showWeek(7,this)">Week 7</div>
+    <div class="tab" onclick="showWeek(8,this)">Week 8 🏁</div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-card active" id="week1">
+    <div class="week-header">
+      <div>
+        <div class="week-num">Week 1</div>
+        <div class="week-focus">Reset & Rebuild the Base</div>
+        <div class="week-desc">Deliberately slow. Most runs will feel insultingly easy — that's the point. We're wiring your aerobic system from the ground up.</div>
+      </div>
+      <div class="week-badge badge-base">Base Building</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-easy">Easy Run</span><div class="day-duration">30</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 only — talk test throughout</div><div class="day-effort">60–70% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-cross">Cross-train</span><div class="day-duration">30</div><div class="day-unit">mins</div><div class="day-detail">Easy bike, swim, or brisk walk</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-tempo">Tempo Intro</span><div class="day-duration">30</div><div class="day-unit">mins</div><div class="day-detail">10 min easy · 10 min tempo · 10 min easy</div><div class="day-effort">70–80% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-long">Long Run</span><div class="day-duration">40</div><div class="day-unit">mins</div><div class="day-detail">All Zone 2 — slow and conversational</div><div class="day-effort">60–70% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>This week's key insight:</strong> Your Thursday tempo run should feel "comfortably hard" — you can say a few words but not full sentences. If you couldn't talk at all, you went too fast. The easy runs must stay easy for the tempo to do its job.</div></div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-card" id="week2">
+    <div class="week-header">
+      <div>
+        <div class="week-num">Week 2</div>
+        <div class="week-focus">Extending the Easy Zone</div>
+        <div class="week-desc">Easy runs get longer. Tempo block expands to 15 minutes. Your body is quietly building more capillaries and mitochondria.</div>
+      </div>
+      <div class="week-badge badge-base">Base Building</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-easy">Easy Run</span><div class="day-duration">35</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 only — talk test</div><div class="day-effort">60–70% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-cross">Cross-train</span><div class="day-duration">30</div><div class="day-unit">mins</div><div class="day-detail">Easy bike or swim</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-tempo">Tempo Run</span><div class="day-duration">33</div><div class="day-unit">mins</div><div class="day-detail">9 min easy · 15 min tempo · 9 min easy</div><div class="day-effort">75–80% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-long">Long Run</span><div class="day-duration">45</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 — slow and easy</div><div class="day-effort">60–70% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>Notice something?</strong> After week 1, your easy pace probably felt a touch more controlled. That's your aerobic system adapting. Resist the temptation to push on easy days — the adaptation happens during recovery, not during effort.</div></div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-card" id="week3">
+    <div class="week-header">
+      <div>
+        <div class="week-num">Week 3</div>
+        <div class="week-focus">First Interval Session</div>
+        <div class="week-desc">We swap one tempo for intervals — short, sharp efforts that push your VO₂ max ceiling higher. Hard day harder, easy day easier.</div>
+      </div>
+      <div class="week-badge badge-build">Building</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-easy">Easy Run</span><div class="day-duration">35</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 only</div><div class="day-effort">60–70% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-cross">Cross-train</span><div class="day-duration">30</div><div class="day-unit">mins</div><div class="day-detail">Easy bike or strength</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-interval">Intervals</span><div class="day-duration">32</div><div class="day-unit">mins</div><div class="day-detail">10 easy · 6×1 min hard / 90s walk · 10 easy</div><div class="day-effort">85–90% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-long">Long Run</span><div class="day-duration">48</div><div class="day-unit">mins</div><div class="day-detail">Easy Zone 2 throughout</div><div class="day-effort">60–70% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>Intervals explained:</strong> During the 1-minute hard efforts, run at roughly 85–90% — fast but controlled, not an all-out sprint. The 90-second walk recovery is mandatory. These train your body to clear lactate faster, which is exactly what stops you getting winded.</div></div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-card" id="week4">
+    <div class="week-header">
+      <div>
+        <div class="week-num">Week 4</div>
+        <div class="week-focus">Recovery Week</div>
+        <div class="week-desc">Volume drops 15%. This is where your aerobic adaptations consolidate. Skipping recovery weeks is the #1 reason people plateau.</div>
+      </div>
+      <div class="week-badge badge-recover">Recovery</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-easy">Easy Run</span><div class="day-duration">25</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 — very relaxed</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Or gentle walk</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-tempo">Light Tempo</span><div class="day-duration">28</div><div class="day-unit">mins</div><div class="day-detail">10 easy · 10 min tempo · 8 easy</div><div class="day-effort">Relaxed effort</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-long">Easy Long</span><div class="day-duration">35</div><div class="day-unit">mins</div><div class="day-detail">Zone 2, no pressure</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>The science of rest:</strong> New mitochondria, capillary growth, and cardiac adaptations happen 48–96 hours after hard effort during recovery. You're not losing fitness this week — you're banking it. Many runners find they feel noticeably faster after a recovery week.</div></div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week-card" id="week5">
+    <div class="week-header">
+      <div>
+        <div class="week-num">Week 5</div>
+        <div class="week-focus">Threshold Push</div>
+        <div class="week-desc">Tempo intervals lengthen to 20 minutes. Long run hits an hour. This is the hardest week so far — trust the easy days to carry you through.</div>
+      </div>
+      <div class="week-badge badge-build">Building</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-easy">Easy Run</span><div class="day-duration">38</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 only</div><div class="day-effort">60–70% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-cross">Cross-train</span><div class="day-duration">35</div><div class="day-unit">mins</div><div class="day-detail">Bike or strength</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-tempo">Tempo Run</span><div class="day-duration">38</div><div class="day-unit">mins</div><div class="day-detail">9 easy · 20 min tempo · 9 easy</div><div class="day-effort">75–82% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-long">Long Run</span><div class="day-duration">60</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 — slowest comfortable pace</div><div class="day-effort">60–70% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>20-minute tempo:</strong> This is a real lactate threshold session. Keep pace steady — don't start fast and fade. A slight negative split (slightly faster second half) is ideal. If you're gasping after 10 minutes, slow down. Consistency of effort beats heroics.</div></div>
+  </div>
+
+  <!-- WEEK 6 -->
+  <div class="week-card" id="week6">
+    <div class="week-header">
+      <div>
+        <div class="week-num">Week 6</div>
+        <div class="week-focus">Interval Power</div>
+        <div class="week-desc">Longer interval reps this week — 2-minute efforts. Your aerobic base is now strong enough to absorb higher-intensity work without breaking down.</div>
+      </div>
+      <div class="week-badge badge-push">Intensity</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-easy">Easy Run</span><div class="day-duration">40</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 only — conversational</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-cross">Cross-train</span><div class="day-duration">35</div><div class="day-unit">mins</div><div class="day-detail">Bike, swim, or strength</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-interval">Intervals</span><div class="day-duration">36</div><div class="day-unit">mins</div><div class="day-detail">10 easy · 5×2 min hard / 2 min jog · 6 easy</div><div class="day-effort">85–90% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-long">Long Run</span><div class="day-duration">65</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 throughout — this is big</div><div class="day-effort">60–70% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>Check your easy pace:</strong> After 6 weeks of Zone 2 work, your easy pace should feel noticeably more controlled than week 1. If you're still gasping on easy days, you're still going too fast. The goal is to eventually run your 5K race distance at what used to feel hard — at easy effort.</div></div>
+  </div>
+
+  <!-- WEEK 7 -->
+  <div class="week-card" id="week7">
+    <div class="week-header">
+      <div>
+        <div class="week-num">Week 7</div>
+        <div class="week-focus">Peak & Sharpen</div>
+        <div class="week-desc">Final big week before taper. One strong tempo, one interval session. Long run slightly shorter — we're arriving fresh, not exhausted.</div>
+      </div>
+      <div class="week-badge badge-push">Peak Week</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-easy">Easy Run</span><div class="day-duration">35</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 — relaxed legs</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-interval">Intervals</span><div class="day-duration">32</div><div class="day-unit">mins</div><div class="day-detail">10 easy · 4×3 min hard / 2 min jog · 6 easy</div><div class="day-effort">85–88% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-tempo">Tempo Run</span><div class="day-duration">35</div><div class="day-unit">mins</div><div class="day-detail">10 easy · 18 min tempo · 7 easy</div><div class="day-effort">78–82% max HR</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-long">Easy Long</span><div class="day-duration">50</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 — comfortable and controlled</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>Peak week mindset:</strong> You may feel tired mid-week with both a quality session and a tempo. That's normal. Trust the process — the taper next week will leave you feeling like a new runner. Don't add extra sessions or try to "catch up" on anything.</div></div>
+  </div>
+
+  <!-- WEEK 8 -->
+  <div class="week-card" id="week8">
+    <div class="week-header">
+      <div>
+        <div class="week-num">Week 8</div>
+        <div class="week-focus">Taper & Race 🏁</div>
+        <div class="week-desc">Volume drops by 40%. One short sharpener. Then race day — run your 5K and feel the difference 8 weeks of Zone 2 makes.</div>
+      </div>
+      <div class="week-badge badge-recover">Race Week</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Sleep, hydrate</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-easy">Easy Jog</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">Zone 2, very easy</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full rest</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-interval">Sharpener</span><div class="day-duration">22</div><div class="day-unit">mins</div><div class="day-detail">12 easy · 4×30s strides · 5 easy</div><div class="day-effort">Legs feeling snappy?</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Lay out kit, sleep early</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-race">🏁 Race or Time Trial</span><div class="day-duration">5K</div><div class="day-unit">race</div><div class="day-detail">Start controlled. Negative split. Enjoy breathing.</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Recovery</span><div class="day-detail">Walk, stretch, celebrate 🎉</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">🏁</div><div class="tip-text"><strong>Race day:</strong> Go out at a pace that feels easy for the first kilometre. You'll want to go faster — don't. Kilometres 2 and 3 are where you hold steady. If you have anything left at km 4, that's when you push. The sign this plan worked? You finish breathing — not gasping.</div></div>
+  </div>
+
+  <!-- PROGRESS TRACKER -->
+  <div class="tracker">
+    <div class="section-title">Progress</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+      <span style="font-size:13px; color:var(--muted); font-style:italic;">Week <span id="current-week-label">1</span> of 8</span>
+      <span style="font-family:'Archivo',sans-serif; font-size:13px; font-weight:900; color:var(--accent);" id="pct-label">12.5%</span>
+    </div>
+    <div class="tracker-bar-wrap"><div class="tracker-bar" id="progress-bar" style="width:12.5%"></div></div>
+    <div class="tracker-labels"><span>Week 1 — Reset</span><span>Week 8 — 🏁 Breathe Easy</span></div>
+  </div>
+
+</div>
+
+<script>
+  function showWeek(n, el) {
+    document.querySelectorAll('.week-card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('week' + n).classList.add('active');
+    el.classList.add('active');
+    const pct = (n / 8 * 100).toFixed(1);
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('pct-label').textContent = pct + '%';
+    document.getElementById('current-week-label').textContent = n;
+  }
+</script>
+</body>
+</html>
