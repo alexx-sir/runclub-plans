@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zone 2 Running — Run Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F5F0;
+    --ink: #1A1612;
+    --muted: #8A8070;
+    --border: #E2DAD0;
+    --green: #2E7D44;
+    --green-mid: #4A9E5C;
+    --green-light: #EAF4EC;
+    --green-pale: #F2FAF4;
+    --card: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: #0D0D0D;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    color: #F5F2EC;
+    text-decoration: none;
+  }
+  .nav-logo span { color: #5DBF72; }
+  .nav-back {
+    font-size: 12px;
+    font-weight: 500;
+    color: #5A5248;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.15s;
+  }
+  .nav-back:hover { color: #5DBF72; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green);
+    padding: 72px 32px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'Z2';
+    position: absolute;
+    right: -30px;
+    top: -20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 280px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; }
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 18px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 14vw, 120px);
+    color: #fff;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+  .hero-title em {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.55em;
+    display: block;
+    letter-spacing: 0;
+    line-height: 1.3;
+    margin-top: 4px;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--green-light);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+  }
+  .section-title-wrap { }
+  .section-eyebrow {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 3px;
+  }
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+
+  .section-block {
+    margin-bottom: 72px;
+    animation: fadeUp 0.7s ease both;
+  }
+  .section-block:nth-child(1) { animation-delay: 0.1s; }
+  .section-block:nth-child(2) { animation-delay: 0.2s; }
+  .section-block:nth-child(3) { animation-delay: 0.3s; }
+
+  /* ── PROSE ── */
+  .prose {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #3A3228;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .prose strong { font-weight: 600; color: var(--ink); }
+  .prose em { font-style: italic; color: var(--green); }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight {
+    background: var(--green);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 28px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 16px;
+    font-family: 'Lora', serif;
+    font-size: 120px;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+  }
+  .highlight-text {
+    font-family: 'Lora', serif;
+    font-size: clamp(18px, 3vw, 24px);
+    font-style: italic;
+    color: #fff;
+    line-height: 1.5;
+    position: relative;
+  }
+  .highlight-source {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 12px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── INFO CARDS GRID ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .info-card-icon { font-size: 24px; margin-bottom: 10px; }
+  .info-card-title {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .info-card-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── ZONES TABLE ── */
+  .zones-table {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 28px 0;
+  }
+  .zone-row {
+    display: grid;
+    grid-template-columns: 56px 1fr 110px 110px;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+    transition: background 0.15s;
+  }
+  .zone-row:last-child { border-bottom: none; }
+  .zone-row.header {
+    background: #F5F2EC;
+    padding: 10px 20px;
+  }
+  .zone-row.active {
+    background: var(--green-pale);
+    border-left: 4px solid var(--green);
+    padding-left: 16px;
+  }
+  .zone-row.header span {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .zone-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .zone-row.active .zone-badge { color: var(--green); }
+  .zone-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .zone-row.active .zone-name { color: var(--green); font-weight: 600; }
+  .zone-feel {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    font-family: 'Lora', serif;
+  }
+  .zone-hr {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    text-align: right;
+  }
+  .zone-row.active .zone-hr { color: var(--green); font-weight: 600; }
+  .zone-star {
+    font-size: 10px;
+    background: var(--green);
+    color: white;
+    padding: 2px 7px;
+    border-radius: 99px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    margin-left: 6px;
+  }
+
+  /* ── HOW-TO STEPS ── */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 28px 0;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 28px;
+    bottom: 28px;
+    width: 1px;
+    background: var(--border);
+  }
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 0;
+    position: relative;
+  }
+  .step-num {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--green);
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.04em;
+  }
+  .step-content { padding-top: 10px; }
+  .step-title {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .step-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .step-body strong { color: var(--ink); font-weight: 500; }
+
+  /* ── TALK TEST CARD ── */
+  .talk-test {
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 28px 0;
+  }
+  .talk-test-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: #5DBF72;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+  .talk-items { display: flex; flex-direction: column; gap: 12px; }
+  .talk-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .talk-item.yes { color: #C8EDCC; }
+  .talk-item.no  { color: #EDAAA8; }
+  .talk-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── COMMON MISTAKES ── */
+  .mistakes { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+  .mistake {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .mistake-icon { font-size: 20px; flex-shrink: 0; }
+  .mistake-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .mistake-body { font-size: 13px; color: var(--muted); line-height: 1.55; font-weight: 300; }
+
+  /* ── BACK BUTTON ── */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.15s, transform 0.15s;
+    margin-top: 16px;
+  }
+  .back-btn:hover { background: #256636; transform: translateY(-2px); }
+
+  /* ── DIVIDER ── */
+  .ruled {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 56px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 560px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .zone-row { grid-template-columns: 44px 1fr 80px; }
+    .zone-hr { display: none; }
+    .hero { padding: 52px 20px 56px; }
+    .main { padding: 44px 18px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html">Run<span>Club</span></a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">The foundation of everything</p>
+    <h1 class="hero-title">Zone 2<em>The most important run you'll ever do</em></h1>
+    <p class="hero-sub">Most runners skip Zone 2 because it feels too easy to be useful. That's exactly why most runners plateau. Here's what it is, why it works, and how to actually do it.</p>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SECTION 1: WHAT IS ZONE 2 -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">01</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">The basics</div>
+        <div class="section-title">What is Zone 2?</div>
+      </div>
+    </div>
+
+    <p class="prose">Your heart rate exists on a spectrum from resting to maximum. Zone 2 is the <strong>second lowest intensity zone</strong> — a pace where your body is working aerobically, using oxygen efficiently to burn fat as its primary fuel source.</p>
+
+    <p class="prose">Think of your body as having two engines: an <em>aerobic engine</em> (efficient, uses fat and oxygen, can run for hours) and an <em>anaerobic engine</em> (powerful, burns glucose, burns out fast). Zone 2 trains your aerobic engine exclusively.</p>
+
+    <!-- ZONES TABLE -->
+    <div class="zones-table">
+      <div class="zone-row header">
+        <span>Zone</span>
+        <span>Name</span>
+        <span>Feel</span>
+        <span style="text-align:right">Max HR %</span>
+      </div>
+      <div class="zone-row">
+        <div class="zone-badge">Z1</div>
+        <div class="zone-name">Recovery</div>
+        <div class="zone-feel">Very easy walk</div>
+        <div class="zone-hr">50–60%</div>
+      </div>
+      <div class="zone-row active">
+        <div class="zone-badge">Z2</div>
+        <div class="zone-name">Aerobic Base <span class="zone-star">★ This one</span></div>
+        <div class="zone-feel">Easy conversation</div>
+        <div class="zone-hr">60–70%</div>
+      </div>
+      <div class="zone-row">
+        <div class="zone-badge">Z3</div>
+        <div class="zone-name">Aerobic Power</div>
+        <div class="zone-feel">A few words</div>
+        <div class="zone-hr">70–80%</div>
+      </div>
+      <div class="zone-row">
+        <div class="zone-badge">Z4</div>
+        <div class="zone-name">Threshold</div>
+        <div class="zone-feel">Hard to talk</div>
+        <div class="zone-hr">80–90%</div>
+      </div>
+      <div class="zone-row">
+        <div class="zone-badge">Z5</div>
+        <div class="zone-name">VO₂ Max</div>
+        <div class="zone-feel">Can't speak</div>
+        <div class="zone-hr">90–100%</div>
+      </div>
+    </div>
+
+    <p class="prose">The key thing to understand: <strong>Zone 2 should feel almost embarrassingly easy.</strong> Most people run it too fast. If you feel like you could run significantly faster — you're probably in the right place.</p>
+  </div>
+
+  <hr class="ruled">
+
+  <!-- SECTION 2: WHY ZONE 2 -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">02</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">The science (simplified)</div>
+        <div class="section-title">Why does Zone 2 work?</div>
+      </div>
+    </div>
+
+    <p class="prose">Zone 2 training triggers a specific biological adaptation: <strong>your body builds more mitochondria</strong> — the tiny power plants inside your muscle cells. More mitochondria means more aerobic capacity, which means you can run faster and longer before getting winded.</p>
+
+    <div class="highlight">
+      <div class="highlight-text">The goal is to get to a point where a pace that once felt hard now feels easy — without having trained at that hard pace.</div>
+      <div class="highlight-source">The principle behind Zone 2 training</div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-icon">⚡</div>
+        <div class="info-card-title">More Mitochondria</div>
+        <div class="info-card-body">Zone 2 is the primary stimulus for mitochondrial growth. More mitochondria = more aerobic power = less breathlessness at any given pace.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🔥</div>
+        <div class="info-card-title">Fat Burning</div>
+        <div class="info-card-body">At Zone 2, your body uses fat as its main fuel. Training this system means you have a near-unlimited energy source during runs, reducing fatigue.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">❤️</div>
+        <div class="info-card-title">Heart Strength</div>
+        <div class="info-card-body">Easy aerobic running strengthens your cardiac output — how much blood your heart pumps per beat — so every organ and muscle gets more oxygen.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🛡️</div>
+        <div class="info-card-title">Injury Prevention</div>
+        <div class="info-card-body">Low intensity means low stress on joints and tendons. You can accumulate far more training time in Zone 2 without breaking down than at harder efforts.</div>
+      </div>
+    </div>
+
+    <p class="prose">Here's the paradox that trips everyone up: <strong>the less effort you put in during Zone 2 runs, the more adaptation happens.</strong> Pushing harder actually blunts the signal. Your body needs to stay in fat-burning mode — cross into Zone 3 and you've switched fuels and lost the stimulus.</p>
+  </div>
+
+  <hr class="ruled">
+
+  <!-- SECTION 3: HOW TO DO IT -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">03</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">The practice</div>
+        <div class="section-title">How to actually run Zone 2</div>
+      </div>
+    </div>
+
+    <p class="prose">Zone 2 is defined by effort and heart rate — not speed. Your Zone 2 pace might be a 7 min/km jog, or it might be a brisk walk. Both are valid. Here's how to find and stay in it.</p>
+
+    <!-- THE TALK TEST -->
+    <div class="talk-test">
+      <div class="talk-test-title">✓ The Talk Test — Your Built-In Sensor</div>
+      <div class="talk-items">
+        <div class="talk-item yes"><div class="talk-icon">✓</div><div>You can speak in full, complete sentences without gasping</div></div>
+        <div class="talk-item yes"><div class="talk-icon">✓</div><div>You feel like you could run significantly faster if you wanted to</div></div>
+        <div class="talk-item yes"><div class="talk-icon">✓</div><div>Your breathing is elevated but fully under control</div></div>
+        <div class="talk-item yes"><div class="talk-icon">✓</div><div>You could sustain this pace for a very long time</div></div>
+        <div class="talk-item no"><div class="talk-icon">✗</div><div>If you're struggling to get words out — you've gone too fast, slow down</div></div>
+        <div class="talk-item no"><div class="talk-icon">✗</div><div>If your sentences are broken up by breaths — dial it back</div></div>
+      </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Find your Zone 2 heart rate</div>
+          <div class="step-body">A simple formula: <strong>180 minus your age</strong>. That's roughly the top of your Zone 2. For a 35-year-old, that's 145 bpm. Don't exceed this number during easy runs. If you don't have a heart rate monitor, the talk test works just as well.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Slow down — probably a lot</div>
+          <div class="step-body">Most people need to slow down by <strong>60–90 seconds per kilometre</strong> compared to what they think is easy. This feels uncomfortable at first. Embrace it. The pace will naturally speed up over weeks as your aerobic base develops.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Walk if you need to</div>
+          <div class="step-body">If you can't hold a conversation at a run, <strong>walk until you can</strong>. Walking at a brisk pace is Zone 2. There is no shame in walking — it's the same aerobic stimulus. What matters is keeping your heart rate in range, not your feet moving.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Run by feel, not by pace</div>
+          <div class="step-body">Ignore your pace on the watch. Hills, heat, and fatigue all change what pace corresponds to Zone 2. <strong>Run by effort and heart rate</strong>, not by trying to hit a speed. Some days Zone 2 is 6:00/km, some days it's 7:30/km — both are fine.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Do it consistently, over months</div>
+          <div class="step-body">Zone 2 adaptations are <strong>slow and cumulative</strong>. You won't feel different after one week. After 6–8 weeks, your easy pace will feel noticeably smoother. After 3–6 months, the transformation is significant. Consistency is everything.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMON MISTAKES -->
+    <p class="prose" style="margin-top: 36px;"><strong>Common Zone 2 mistakes to avoid:</strong></p>
+    <div class="mistakes">
+      <div class="mistake">
+        <div class="mistake-icon">⚡</div>
+        <div>
+          <div class="mistake-title">Running too fast</div>
+          <div class="mistake-body">The most common mistake by far. If you're running at what feels like a "comfortable jog," you're probably in Zone 3. Zone 2 should feel almost too slow. Use the talk test religiously.</div>
+        </div>
+      </div>
+      <div class="mistake">
+        <div class="mistake-icon">📅</div>
+        <div>
+          <div class="mistake-title">Expecting quick results</div>
+          <div class="mistake-body">Mitochondrial growth takes 4–8 weeks to show up. Many runners quit Zone 2 training before the adaptations kick in because it "doesn't feel like it's working." Trust the process.</div>
+        </div>
+      </div>
+      <div class="mistake">
+        <div class="mistake-icon">🔀</div>
+        <div>
+          <div class="mistake-title">Living in the grey zone</div>
+          <div class="mistake-body">Running every session at the same moderate pace — too hard to be Zone 2, too easy to be a real quality session. This is the most common plateau. Easy runs must be easy. Hard runs must be hard.</div>
+        </div>
+      </div>
+      <div class="mistake">
+        <div class="mistake-icon">🏔️</div>
+        <div>
+          <div class="mistake-title">Not adjusting for hills</div>
+          <div class="mistake-body">Going uphill sends your heart rate up fast. Slow to a walk on steep hills to stay in Zone 2 — this is not weakness, it's correct execution. Your effort stays the same; your pace changes.</div>
+        </div>
+      </div>
+    </div>
+
+    <a class="back-btn" href="index.html">← Back to Run Club home</a>
+
+  </div>
+
+</div>
+
+</body>
+</html>
