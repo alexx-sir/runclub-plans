@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5K Training Plan — Run Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EE;
+    --ink: #1C1A16;
+    --muted: #8A8070;
+    --card: #FFFFFF;
+    --border: #E4DDD0;
+    --green: #3A7D44;
+    --green-light: #EAF5EC;
+    --amber: #D97706;
+    --amber-light: #FEF3C7;
+    --red: #B91C1C;
+    --red-light: #FEE2E2;
+    --blue: #1D4ED8;
+    --blue-light: #EFF6FF;
+    --tag-rest: #F3F0EA;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    padding: 56px 32px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 18px,
+      rgba(255,255,255,0.02) 18px,
+      rgba(255,255,255,0.02) 19px
+    );
+  }
+  .hero-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #6EBF7A;
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 7vw, 68px);
+    font-weight: 800;
+    color: #F7F4EE;
+    line-height: 0.95;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero-title span { color: #6EBF7A; }
+  .hero-sub {
+    font-size: 15px;
+    color: #8A8070;
+    font-weight: 300;
+    max-width: 380px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #F7F4EE;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #5A5248;
+    margin-top: 4px;
+  }
+
+  /* ── PRINCIPLE BAR ── */
+  .principle-bar {
+    background: #3A7D44;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .principle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #C8EDCC;
+    letter-spacing: 0.04em;
+  }
+  .principle-dot { width: 6px; height: 6px; border-radius: 50%; background: #6EBF7A; flex-shrink:0; }
+
+  /* ── MAIN LAYOUT ── */
+  .main { max-width: 960px; margin: 0 auto; padding: 40px 20px 60px; }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── WEEK TABS ── */
+  .week-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .tab {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    background: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .tab:hover { border-color: var(--green); color: var(--green); }
+  .tab.active { background: var(--ink); border-color: var(--ink); color: #F7F4EE; }
+  .tab.done { background: var(--green-light); border-color: var(--green); color: var(--green); }
+
+  /* ── WEEK CARD ── */
+  .week-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: none;
+    animation: slideIn 0.3s ease;
+  }
+  .week-card.active { display: block; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .week-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .week-header-left { }
+  .week-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .week-focus {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .week-desc {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-top: 6px;
+    max-width: 440px;
+    line-height: 1.5;
+  }
+  .week-badge {
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .badge-easy { background: var(--green-light); color: var(--green); }
+  .badge-build { background: var(--amber-light); color: var(--amber); }
+  .badge-push { background: var(--red-light); color: var(--red); }
+  .badge-recover { background: var(--blue-light); color: var(--blue); }
+
+  /* ── DAYS GRID ── */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid var(--border);
+  }
+  .day-col {
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+  }
+  .day-col:last-child { border-right: none; }
+  .day-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 10px 6px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .day-body {
+    padding: 12px 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    text-align: center;
+  }
+  .day-type {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .type-run    { background: var(--green-light); color: var(--green); }
+  .type-walk   { background: #FEF9C3; color: #854D0E; }
+  .type-rest   { background: var(--tag-rest); color: #8A8070; }
+  .type-cross  { background: var(--blue-light); color: var(--blue); }
+  .type-race   { background: #FEE2E2; color: var(--red); }
+
+  .day-detail {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .day-duration {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .day-unit {
+    font-size: 9px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── WEEK TIP ── */
+  .week-tip {
+    padding: 16px 28px;
+    border-top: 1px solid var(--border);
+    background: #FAFAF8;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .tip-text { font-size: 12.5px; color: #5A5248; line-height: 1.55; font-weight: 300; }
+  .tip-text strong { font-weight: 600; color: var(--ink); }
+
+  /* ── ZONE 2 CALLOUT ── */
+  .zone2-callout {
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 36px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .z2-left { flex: 1; min-width: 200px; }
+  .z2-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #6EBF7A;
+    margin-bottom: 8px;
+  }
+  .z2-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #F7F4EE;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .z2-body { font-size: 13px; color: #8A8070; font-weight: 300; line-height: 1.6; }
+  .z2-right {
+    background: #1C2A1E;
+    border-radius: 12px;
+    padding: 20px 24px;
+    min-width: 200px;
+  }
+  .z2-test-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #6EBF7A;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .z2-test-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: #C8EDCC;
+    margin-bottom: 6px;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+  .z2-check { color: #6EBF7A; font-size: 13px; flex-shrink: 0; }
+
+  /* ── PROGRESS TRACKER ── */
+  .tracker {
+    margin-bottom: 36px;
+  }
+  .tracker-bar-wrap {
+    background: var(--border);
+    border-radius: 99px;
+    height: 8px;
+    overflow: hidden;
+    margin: 10px 0 6px;
+  }
+  .tracker-bar {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #3A7D44, #6EBF7A);
+    transition: width 0.4s ease;
+  }
+  .tracker-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .days-grid { grid-template-columns: 1fr 1fr; }
+    .day-col:nth-child(2n) { border-right: none; }
+    .day-col { border-bottom: 1px solid var(--border); }
+    .hero { padding: 40px 20px 36px; }
+    .hero-stats { gap: 24px; }
+    .week-header { padding: 18px 18px 14px; }
+    .week-tip { padding: 14px 18px; }
+    .days-grid { }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Run Club · 8-Week Programme</p>
+  <h1 class="hero-title">Your First<br><span>5K</span></h1>
+  <p class="hero-sub">Built around the aerobic pyramid — heavy on Zone 2, light on ego. Run/walk intervals all the way to a full 5K finish.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-label">Weeks</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">3×</div><div class="hero-stat-label">Per week</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">5K</div><div class="hero-stat-label">Goal race</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">Stops allowed</div></div>
+  </div>
+</div>
+
+<!-- PRINCIPLE BAR -->
+<div class="principle-bar">
+  <div class="principle"><div class="principle-dot"></div>Run easy enough to hold a conversation</div>
+  <div class="principle"><div class="principle-dot"></div>Walk breaks are not failure — they're strategy</div>
+  <div class="principle"><div class="principle-dot"></div>Consistency beats intensity every single week</div>
+</div>
+
+<div class="main">
+
+  <!-- ZONE 2 EXPLAINER -->
+  <div class="zone2-callout">
+    <div class="z2-left">
+      <div class="z2-label">The Foundation of This Plan</div>
+      <div class="z2-title">Everything runs on Zone 2</div>
+      <div class="z2-body">Almost every run in this plan should feel embarrassingly easy. That's the point. Zone 2 (60–70% max HR) builds your aerobic engine — more mitochondria, better fat burning, improved endurance. The run/walk intervals let you accumulate time on feet without burning out.</div>
+    </div>
+    <div class="z2-right">
+      <div class="z2-test-title">✓ The Talk Test</div>
+      <div class="z2-test-item"><span class="z2-check">✓</span>You can speak full sentences while running</div>
+      <div class="z2-test-item"><span class="z2-check">✓</span>You feel like you could go much faster (but don't)</div>
+      <div class="z2-test-item"><span class="z2-check">✓</span>Your breathing is elevated but comfortable</div>
+      <div class="z2-test-item"><span class="z2-check">✗</span>If you can't talk — slow down immediately</div>
+    </div>
+  </div>
+
+  <!-- WEEK SELECTOR -->
+  <div class="section-title">Weekly Plan</div>
+
+  <div class="week-tabs" id="tabs">
+    <div class="tab active" onclick="showWeek(1, this)">Week 1</div>
+    <div class="tab" onclick="showWeek(2, this)">Week 2</div>
+    <div class="tab" onclick="showWeek(3, this)">Week 3</div>
+    <div class="tab" onclick="showWeek(4, this)">Week 4</div>
+    <div class="tab" onclick="showWeek(5, this)">Week 5</div>
+    <div class="tab" onclick="showWeek(6, this)">Week 6</div>
+    <div class="tab" onclick="showWeek(7, this)">Week 7</div>
+    <div class="tab" onclick="showWeek(8, this)">Week 8 🏁</div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-card active" id="week1">
+    <div class="week-header">
+      <div class="week-header-left">
+        <div class="week-num">Week 1</div>
+        <div class="week-focus">Just Start Moving</div>
+        <div class="week-desc">Get your body used to running. Every run is run 1 min / walk 2 min repeated. No pressure, just show up.</div>
+      </div>
+      <div class="week-badge badge-easy">Easy</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-run">Run/Walk</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">1 min run · 2 min walk · repeat</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Or gentle walk</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-run">Run/Walk</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">1 min run · 2 min walk · repeat</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-run">Club Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">20 min continuous · Zone 2 · run club session</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>This week's focus:</strong> Slow is not slow enough. The weekday run/walk intervals build you up so Saturday's 20-minute continuous run feels manageable — even in week 1. If you need to walk for 30 seconds mid-run at the club session, that's fine. Just keep moving.</div></div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-card" id="week2">
+    <div class="week-header">
+      <div class="week-header-left">
+        <div class="week-num">Week 2</div>
+        <div class="week-focus">Building the Habit</div>
+        <div class="week-desc">Slightly longer run intervals. Still very comfortable — your legs are adapting even when it doesn't feel hard.</div>
+      </div>
+      <div class="week-badge badge-easy">Easy</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-run">Run/Walk</span><div class="day-duration">22</div><div class="day-unit">mins</div><div class="day-detail">90s run · 90s walk · repeat</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-cross">Cross</span><div class="day-detail">Swim, bike, or walk 20 min</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-run">Run/Walk</span><div class="day-duration">22</div><div class="day-unit">mins</div><div class="day-detail">90s run · 90s walk · repeat</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-run">Club Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">20 min continuous · run club session</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>This week's focus:</strong> Notice how your breathing settles after a minute of running? That's your body switching energy systems — a sign Zone 2 is working. The midweek 90s run / 90s walk intervals are specifically building your legs for Saturday's 20-minute continuous club run.</div></div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-card" id="week3">
+    <div class="week-header">
+      <div class="week-header-left">
+        <div class="week-num">Week 3</div>
+        <div class="week-focus">Run More, Walk Less</div>
+        <div class="week-desc">Run intervals stretch to 3 minutes. Walk breaks shorten. You're spending more time in Zone 2 — this is where the magic happens.</div>
+      </div>
+      <div class="week-badge badge-easy">Easy+</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-run">Run/Walk</span><div class="day-duration">25</div><div class="day-unit">mins</div><div class="day-detail">3 min run · 1 min walk · repeat</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-cross">Cross</span><div class="day-detail">20–25 min easy activity</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-run">Run/Walk</span><div class="day-duration">25</div><div class="day-unit">mins</div><div class="day-detail">3 min run · 1 min walk · repeat</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-run">Club Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">20 min continuous · run club session</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>This week's focus:</strong> The 3:1 ratio on weekday runs is a milestone — you're running more than walking for the first time. That midweek work directly feeds into how comfortable Saturday's 20-minute club run feels. If you nail the easy pace, 20 minutes should feel manageable.</div></div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-card" id="week4">
+    <div class="week-header">
+      <div class="week-header-left">
+        <div class="week-num">Week 4</div>
+        <div class="week-focus">Recovery Week</div>
+        <div class="week-desc">Step back 10% in volume. Your body supercompensates during rest weeks — this is where you actually get fitter. Don't skip it.</div>
+      </div>
+      <div class="week-badge badge-recover">Recovery</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-run">Easy Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">2 min run · 1 min walk — very easy</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Or gentle walk</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-run">Easy Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">2 min run · 1 min walk — very easy</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-run">Club Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">20 min continuous · easy effort · club session</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>This week's focus:</strong> Recovery weeks feel like cheating. They're not — aerobic adaptations (new mitochondria, capillary growth) happen in the 48–72 hours after hard work. You're building fitness by resting. Saturday's club run should feel noticeably easier than week 1 — that's 3 weeks of base paying off.</div></div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week-card" id="week5">
+    <div class="week-header">
+      <div class="week-header-left">
+        <div class="week-num">Week 5</div>
+        <div class="week-focus">First Continuous Runs</div>
+        <div class="week-desc">Mid-week runs go continuous. Saturday's club run is the same 20 minutes — but now it should feel genuinely easier than week 1. A big mental shift.</div>
+      </div>
+      <div class="week-badge badge-build">Building</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-run">Continuous</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">Run the whole thing — Zone 2 pace</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-cross">Cross</span><div class="day-detail">25 min easy activity</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-run">Continuous</span><div class="day-duration">22</div><div class="day-unit">mins</div><div class="day-detail">Run the whole thing — Zone 2 pace</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-run">Club Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">20 min continuous · notice how much easier it feels</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>This week's focus:</strong> Running 20 minutes without stopping felt hard in week 1. This week it should feel different — that's 5 weeks of Zone 2 base work paying off. The trust in easy pace is what gets you here.</div></div>
+  </div>
+
+  <!-- WEEK 6 -->
+  <div class="week-card" id="week6">
+    <div class="week-header">
+      <div class="week-header-left">
+        <div class="week-num">Week 6</div>
+        <div class="week-focus">Pushing to 30 Minutes</div>
+        <div class="week-desc">All three weekday runs are continuous. Saturday club run is 20 minutes — your midweek runs are now longer than the club session, which means it should feel comfortable.</div>
+      </div>
+      <div class="week-badge badge-build">Building</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-run">Continuous</span><div class="day-duration">22</div><div class="day-unit">mins</div><div class="day-detail">Easy Zone 2 — conversational</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-cross">Cross</span><div class="day-detail">25–30 min easy activity</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-run">Continuous</span><div class="day-duration">25</div><div class="day-unit">mins</div><div class="day-detail">Easy Zone 2 — conversational</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-run">Club Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">20 min continuous · should feel genuinely comfortable now</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>This week's focus:</strong> Your Thursday run (25 min) is now longer than the Saturday club session. That means 20 minutes should feel well within your limits. If it still feels hard, you're going too fast — slow down until you can hold a conversation throughout.</div></div>
+  </div>
+
+  <!-- WEEK 7 -->
+  <div class="week-card" id="week7">
+    <div class="week-header">
+      <div class="week-header-left">
+        <div class="week-num">Week 7</div>
+        <div class="week-focus">Sharpen & Taper</div>
+        <div class="week-desc">Volume comes down. Quality stays high. One short tempo effort to wake up your legs. Your fitness is locked in — trust the training.</div>
+      </div>
+      <div class="week-badge badge-push">Taper</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-run">Easy Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">Zone 2 — easy and relaxed</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-run">Strides</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">15 min easy + 4×20s light strides</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full recovery</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-run">Club Run</span><div class="day-duration">20</div><div class="day-unit">mins</div><div class="day-detail">20 min easy · enjoy how far you've come</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Rest up for race week</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">💡</div><div class="tip-text"><strong>This week's focus:</strong> Strides are 20-second accelerations at about 80% effort, then walk back. They keep your legs sharp without fatigue. Saturday's club run should feel easy — run it socially, enjoy the chat, and don't be tempted to push. Your fitness is locked in.</div></div>
+  </div>
+
+  <!-- WEEK 8 -->
+  <div class="week-card" id="week8">
+    <div class="week-header">
+      <div class="week-header-left">
+        <div class="week-num">Week 8</div>
+        <div class="week-focus">Race Week 🏁</div>
+        <div class="week-desc">Almost nothing this week. Sleep, eat well, stay off your feet. Your fitness won't improve in 5 days but you can absolutely wreck it by overdoing it.</div>
+      </div>
+      <div class="week-badge badge-recover">Race Week</div>
+    </div>
+    <div class="days-grid">
+      <div class="day-col"><div class="day-name">Mon</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Sleep & hydrate</div></div></div>
+      <div class="day-col"><div class="day-name">Tue</div><div class="day-body"><span class="day-type type-run">Easy Jog</span><div class="day-duration">15</div><div class="day-unit">mins</div><div class="day-detail">Very easy — just keep legs moving</div></div></div>
+      <div class="day-col"><div class="day-name">Wed</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Full rest — no heroics</div></div></div>
+      <div class="day-col"><div class="day-name">Thu</div><div class="day-body"><span class="day-type type-run">Shake-out</span><div class="day-duration">10</div><div class="day-unit">mins</div><div class="day-detail">Easy jog + 2×15s strides</div></div></div>
+      <div class="day-col"><div class="day-name">Fri</div><div class="day-body"><span class="day-type type-rest">Rest</span><div class="day-detail">Lay out your kit, sleep early</div></div></div>
+      <div class="day-col"><div class="day-name">Sat</div><div class="day-body"><span class="day-type type-race">🏁 RACE DAY</span><div class="day-duration">5K</div><div class="day-unit">race</div><div class="day-detail">Start easy. Finish strong. Celebrate.</div></div></div>
+      <div class="day-col"><div class="day-name">Sun</div><div class="day-body"><span class="day-type type-rest">You did it!</span><div class="day-detail">Rest & celebrate 🎉</div></div></div>
+    </div>
+    <div class="week-tip"><div class="tip-icon">🏁</div><div class="tip-text"><strong>Race day strategy:</strong> Start 20% slower than you think you should. The crowd energy will tempt you to sprint — resist it. If you go out too hard, the last kilometre will be miserable. Negative splits (finishing faster than you started) always feel better.</div></div>
+  </div>
+
+  <!-- TRACKER -->
+  <div class="tracker" style="margin-top:40px;">
+    <div class="section-title">Your Progress</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+      <span style="font-size:13px; color:var(--muted); font-weight:300;">Viewing Week <span id="current-week-label">1</span> of 8</span>
+      <span style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--green);" id="pct-label">12.5%</span>
+    </div>
+    <div class="tracker-bar-wrap"><div class="tracker-bar" id="progress-bar" style="width:12.5%"></div></div>
+    <div class="tracker-labels"><span>Week 1 — Start</span><span>Week 8 — 🏁 5K Race</span></div>
+  </div>
+
+</div>
+
+<script>
+  function showWeek(n, el) {
+    document.querySelectorAll('.week-card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('week' + n).classList.add('active');
+    el.classList.add('active');
+    const pct = (n / 8 * 100).toFixed(1);
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('pct-label').textContent = pct + '%';
+    document.getElementById('current-week-label').textContent = n;
+  }
+</script>
+</body>
+</html>
