@@ -483,12 +483,107 @@
     letter-spacing: 0.06em;
   }
 
+  /* ── MEETUP SECTION ── */
+  .meetup-section {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .meetup-banner {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .meetup-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .meetup-stat {
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .meetup-stat:last-child { border-right: none; }
+  .meetup-stat-icon {
+    font-size: 26px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .meetup-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 0.04em;
+    color: var(--green-mid);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .meetup-stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .meetup-bottom {
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .meetup-pin {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(58,125,68,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .meetup-location-text { flex: 1; min-width: 200px; }
+  .meetup-location-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .meetup-location-sub {
+    font-size: 12px;
+    color: var(--muted2);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .meetup-areas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .area-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    color: var(--muted2);
+    white-space: nowrap;
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   @media (max-width: 600px) {
+    .meetup-top { grid-template-columns: 1fr 1fr 1fr; }
+    .meetup-stat { padding: 22px 12px; }
+    .meetup-stat-num { font-size: 32px; }
+    .meetup-bottom { padding: 20px; }
     .plans-grid { grid-template-columns: 1fr; }
     .edu-grid   { grid-template-columns: 1fr; }
     .hero { padding: 60px 20px 48px; min-height: auto; }
@@ -629,6 +724,51 @@
   </div>
 </section>
 
+<hr class="sep">
+
+<!-- ══ MEETUP ══ -->
+<div class="meetup-section" id="meetup">
+  <div class="section-header">
+    <div class="section-tag">Weekly Meetup</div>
+    <div class="section-heading">See you<br>Saturday</div>
+    <p class="section-sub">We meet every week — same day, same time, different spot. Location rotates across the East Bay so everyone gets a home run.</p>
+  </div>
+
+  <div class="meetup-banner">
+    <div class="meetup-top">
+      <div class="meetup-stat">
+        <span class="meetup-stat-icon">📅</span>
+        <div class="meetup-stat-num">SAT</div>
+        <div class="meetup-stat-label">Every week</div>
+      </div>
+      <div class="meetup-stat">
+        <span class="meetup-stat-icon">⏰</span>
+        <div class="meetup-stat-num">9AM</div>
+        <div class="meetup-stat-label">Sharp</div>
+      </div>
+      <div class="meetup-stat">
+        <span class="meetup-stat-icon">📍</span>
+        <div class="meetup-stat-num">20<span style="font-size:22px;">min</span></div>
+        <div class="meetup-stat-label">Club run</div>
+      </div>
+    </div>
+    <div class="meetup-bottom">
+      <div class="meetup-pin">📍</div>
+      <div class="meetup-location-text">
+        <div class="meetup-location-title">Location rotates across the East Bay</div>
+        <div class="meetup-location-sub">Check the group chat each week for the exact spot. We cover all corners so nobody's always driving far.</div>
+      </div>
+      <div class="meetup-areas">
+        <span class="area-tag">San Lorenzo</span>
+        <span class="area-tag">San Leandro</span>
+        <span class="area-tag">Hayward</span>
+        <span class="area-tag">Union City</span>
+        <span class="area-tag">Fremont</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ══ MANTRA ══ -->
 <div class="mantra">
   <p class="mantra-text">"Run slow enough to go fast. Build the base before the race."</p>
@@ -638,7 +778,7 @@
 <!-- ══ FOOTER ══ -->
 <footer class="footer">
   <div class="footer-logo">Run<span>Club</span></div>
-  <p class="footer-line">Training plans · Zone 2 education · Saturday sessions</p>
+  <p class="footer-line">Saturdays 9am · East Bay · Training plans · Zone 2 education</p>
 </footer>
 
 </body>
