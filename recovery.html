@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recovery & Lifestyle — Run Not Gasp Run Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F5F0;
+    --ink: #1A1612;
+    --muted: #8A8070;
+    --border: #E2DAD0;
+    --green: #2E7D44;
+    --green-mid: #4A9E5C;
+    --green-light: #EAF4EC;
+    --green-pale: #F2FAF4;
+    --card: #FFFFFF;
+    --blue: #1A4FA0;
+    --blue-light: #EBF0FA;
+    --amber: #B07D0A;
+    --amber-light: #FDF6E3;
+    --red: #9B2020;
+    --red-light: #FDEAEA;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: #0D0D0D;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    color: #F5F2EC;
+    text-decoration: none;
+  }
+  .nav-logo span { color: #5DBF72; }
+  .nav-back {
+    font-size: 12px;
+    font-weight: 500;
+    color: #5A5248;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.15s;
+  }
+  .nav-back:hover { color: #5DBF72; }
+
+  /* ── HERO ── */
+  .hero {
+    background: #1A4FA0;
+    padding: 72px 32px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'REST';
+    position: absolute;
+    right: -20px;
+    top: -10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 220px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; }
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 18px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 13vw, 110px);
+    color: #fff;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+  .hero-title em {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.52em;
+    display: block;
+    letter-spacing: 0;
+    line-height: 1.3;
+    margin-top: 6px;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--green-light);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+  }
+  .section-eyebrow {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 3px;
+  }
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .section-block {
+    margin-bottom: 72px;
+    animation: fadeUp 0.7s ease both;
+  }
+  .section-block:nth-child(1) { animation-delay: 0.1s; }
+  .section-block:nth-child(2) { animation-delay: 0.2s; }
+  .section-block:nth-child(3) { animation-delay: 0.3s; }
+  .section-block:nth-child(4) { animation-delay: 0.4s; }
+
+  /* ── PROSE ── */
+  .prose {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #3A3228;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .prose strong { font-weight: 600; color: var(--ink); }
+  .prose em { font-style: italic; color: var(--green); }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight {
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 28px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight.green { background: var(--green); }
+  .highlight.blue  { background: #1A4FA0; }
+  .highlight.amber { background: #8A5C08; }
+  .highlight::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 16px;
+    font-family: 'Lora', serif;
+    font-size: 120px;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+  }
+  .highlight-text {
+    font-family: 'Lora', serif;
+    font-size: clamp(16px, 2.8vw, 22px);
+    font-style: italic;
+    color: #fff;
+    line-height: 1.55;
+    position: relative;
+  }
+  .highlight-source {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 12px;
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+  }
+
+  /* ── INFO CARDS ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .info-card-icon { font-size: 24px; margin-bottom: 10px; }
+  .info-card-title {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .info-card-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── SLEEP SCALE ── */
+  .sleep-scale {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 28px 0;
+  }
+  .sleep-row {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+  }
+  .sleep-row:last-child { border-bottom: none; }
+  .sleep-row.header {
+    background: #F5F2EC;
+    padding: 10px 20px;
+  }
+  .sleep-row.header span {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sleep-hours {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .sleep-row.good .sleep-hours { color: var(--green); }
+  .sleep-row.warning .sleep-hours { color: var(--amber); }
+  .sleep-row.bad .sleep-hours { color: var(--red); }
+  .sleep-effect {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .sleep-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .sleep-row.good .sleep-tag { background: var(--green-light); color: var(--green); }
+  .sleep-row.warning .sleep-tag { background: var(--amber-light); color: var(--amber); }
+  .sleep-row.bad .sleep-tag { background: var(--red-light); color: var(--red); }
+
+  /* ── STRESS METER ── */
+  .stress-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 28px 0;
+  }
+  .stress-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .stress-icon { font-size: 22px; flex-shrink: 0; }
+  .stress-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .stress-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .stress-body strong { color: var(--ink); font-weight: 500; }
+
+  /* ── NUTRITION GRID ── */
+  .nutrition-table {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 28px 0;
+  }
+  .nutrition-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .nutrition-row:last-child { border-bottom: none; }
+  .nutrition-row.header {
+    background: #F5F2EC;
+  }
+  .nutrition-cell {
+    padding: 16px 18px;
+    border-right: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .nutrition-cell:last-child { border-right: none; }
+  .nutrition-row.header .nutrition-cell {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 12px 18px;
+  }
+  .nutrition-label {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .nutrition-good { color: var(--green); font-weight: 500; }
+  .nutrition-bad  { color: var(--red);  font-weight: 500; }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 28px 0;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .check-item strong { font-weight: 600; }
+  .check-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--green-light);
+    border: 1.5px solid var(--green);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--green);
+    margin-top: 1px;
+  }
+
+  /* ── DIVIDER ── */
+  .ruled {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 56px;
+  }
+
+  /* ── BACK BUTTON ── */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.15s, transform 0.15s;
+    margin-top: 16px;
+  }
+  .back-btn:hover { background: #256636; transform: translateY(-2px); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 560px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .nutrition-row { grid-template-columns: 1fr; }
+    .nutrition-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .hero { padding: 52px 20px 56px; }
+    .main { padding: 44px 18px 60px; }
+    .sleep-row { grid-template-columns: 80px 1fr; }
+    .sleep-tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html">Run Not Gasp<span> Run Club</span></a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Run Not Gasp Run Club · Floris Gierman Method</p>
+    <h1 class="hero-title">Recovery<em>&amp; Lifestyle</em></h1>
+    <p class="hero-sub">Training is the stimulus. Recovery is where you actually get fitter. Sleep, stress, and nutrition are not optional extras — they are part of the plan.</p>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SECTION 1: SLEEP -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">01</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">The most underrated training tool</div>
+        <div class="section-title">Sleep is when you get fitter</div>
+      </div>
+    </div>
+
+    <p class="prose">Every run you do is a stimulus — a signal to your body to adapt. But the adaptation itself — new mitochondria, stronger heart, better fat burning — happens during sleep, not during the run. <strong>Floris Gierman talks about sleep more than almost any other recovery tool.</strong> It's free, it's available every night, and most runners completely undervalue it.</p>
+
+    <p class="prose">The goal is <em>7–9 hours</em> every night, not just before a hard session. Consistently short sleep (under 6 hours) raises your resting heart rate, slows recovery, and makes your easy pace feel harder than it should — which pushes you out of Zone 2 without realising it.</p>
+
+    <div class="sleep-scale">
+      <div class="sleep-row header">
+        <span>Hours/night</span>
+        <span>What happens to your training</span>
+        <span>Status</span>
+      </div>
+      <div class="sleep-row good">
+        <div class="sleep-hours">8–9 hrs</div>
+        <div class="sleep-effect">Peak recovery. Mitochondria grow. Heart rate is lower. Easy runs feel easy. You show up to Saturday's club run fresh.</div>
+        <div class="sleep-tag">Optimal</div>
+      </div>
+      <div class="sleep-row good">
+        <div class="sleep-hours">7–8 hrs</div>
+        <div class="sleep-effect">Good recovery. Adaptations still happening. Slight fatigue possible mid-week but manageable with easy pacing.</div>
+        <div class="sleep-tag">Good</div>
+      </div>
+      <div class="sleep-row warning">
+        <div class="sleep-hours">6–7 hrs</div>
+        <div class="sleep-effect">Recovery is compromised. HR runs higher at the same effort. You may push into Zone 3 without noticing. Progress slows.</div>
+        <div class="sleep-tag">Caution</div>
+      </div>
+      <div class="sleep-row bad">
+        <div class="sleep-hours">&lt; 6 hrs</div>
+        <div class="sleep-effect">Cortisol spikes, heart rate elevated, aerobic adaptations stall. A run on this sleep does more harm than good. Consider rest instead.</div>
+        <div class="sleep-tag">Skip the run</div>
+      </div>
+    </div>
+
+    <div class="highlight green">
+      <div class="highlight-text">Sleep is the single most effective thing you can do to enhance athletic recovery and improve performance — and it costs nothing.</div>
+      <div class="highlight-source">Floris Gierman — Extramilest Podcast</div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-icon">🌙</div>
+        <div class="info-card-title">Consistent bedtime</div>
+        <div class="info-card-body">Going to bed and waking at the same time every day — even weekends — does more for recovery than any supplement. Your body's repair cycle runs on a clock.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📱</div>
+        <div class="info-card-title">No screens before bed</div>
+        <div class="info-card-body">Blue light suppresses melatonin for up to 2 hours. Put the phone down 30–60 minutes before sleep and your sleep quality improves measurably.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🌡️</div>
+        <div class="info-card-title">Cool room</div>
+        <div class="info-card-body">Your body temperature drops to initiate deep sleep. A slightly cooler room (around 65–68°F / 18–20°C) helps you fall asleep faster and stay in deep sleep longer.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">☕</div>
+        <div class="info-card-title">Cut caffeine by 2pm</div>
+        <div class="info-card-body">Caffeine has a half-life of 5–7 hours. A coffee at 3pm still has half its caffeine in your system at 9pm, disrupting your sleep architecture even if you fall asleep fine.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="ruled">
+
+  <!-- SECTION 2: STRESS -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">02</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Your body doesn't separate life from training</div>
+        <div class="section-title">Stress is stress — your heart rate doesn't care where it comes from</div>
+      </div>
+    </div>
+
+    <p class="prose">This is one of Floris's most important lessons and one most running plans completely ignore. <strong>Your body treats work stress, relationship stress, financial stress, and training stress as the same thing.</strong> They all raise cortisol. They all elevate your resting heart rate. A brutal week at work followed by a hard Saturday run is not two separate events — it's a compounding load on the same body.</p>
+
+    <p class="prose">This is exactly why your MAF heart rate is so valuable. On a high-stress day, your heart rate will be higher than usual at the same pace. That's your body telling you something. <em>Listen to it — slow down, take walk breaks, or rest entirely.</em> It's not weakness. It's smart training.</p>
+
+    <div class="highlight blue">
+      <div class="highlight-text">Training should adapt to your life — not fight it. A slower run at the right heart rate is always worth more than a fast run in the wrong zone.</div>
+      <div class="highlight-source">Floris Gierman — Extramilest Method</div>
+    </div>
+
+    <div class="stress-cards">
+      <div class="stress-card">
+        <div class="stress-icon">😤</div>
+        <div>
+          <div class="stress-title">Hard week at work</div>
+          <div class="stress-body">Cortisol is elevated. Your resting HR may be 5–10 bpm higher than normal. <strong>Slow your easy runs down</strong> to keep them under your MAF number. Skip the quality session if you're exhausted.</div>
+        </div>
+      </div>
+      <div class="stress-card">
+        <div class="stress-icon">🤒</div>
+        <div>
+          <div class="stress-title">Feeling under the weather</div>
+          <div class="stress-body">If symptoms are above the neck (runny nose, mild headache), an easy Zone 2 run is usually fine. <strong>Symptoms below the neck</strong> (chest tightness, body aches, fever) — rest completely. Running through illness extends it.</div>
+        </div>
+      </div>
+      <div class="stress-card">
+        <div class="stress-icon">🥵</div>
+        <div>
+          <div class="stress-title">Hot Bay Area morning</div>
+          <div class="stress-body">Heat raises your heart rate by 5–20 bpm at the same effort. On hot days, <strong>slow down significantly</strong> or move your run to early morning before the heat builds. Your pace will be slower — that's correct, not a failure.</div>
+        </div>
+      </div>
+      <div class="stress-card">
+        <div class="stress-icon">😴</div>
+        <div>
+          <div class="stress-title">Poor night of sleep</div>
+          <div class="stress-body">One bad night won't ruin your training. A gentle Zone 2 run can actually help. But <strong>two or more bad nights in a row</strong>? Consider replacing a run with a walk or an extra rest day. Your body needs the recovery more than the mileage.</div>
+        </div>
+      </div>
+      <div class="stress-card">
+        <div class="stress-icon">📅</div>
+        <div>
+          <div class="stress-title">Missed a session</div>
+          <div class="stress-body">Never try to "make up" a missed run by doubling up the next day. <strong>Just move on.</strong> One skipped session in an 8-week plan is completely insignificant. Doubling up creates injury risk and disrupts recovery.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="ruled">
+
+  <!-- SECTION 3: NUTRITION -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">03</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Fuel for aerobic running</div>
+        <div class="section-title">Eat to support your engine, not your ego</div>
+      </div>
+    </div>
+
+    <p class="prose">Zone 2 training runs primarily on fat as fuel — which is actually one of its biggest advantages. You have tens of thousands of calories of fat stored even as a lean runner, so you're unlikely to "bonk" on a 45-minute easy run. <strong>The nutrition focus for this club is simple: eat real food, stay hydrated, and don't overthink it.</strong></p>
+
+    <p class="prose">Floris doesn't push complex nutrition protocols for beginners. His advice: <em>eat mostly whole foods, don't run fasted if you feel bad doing it, and hydrate consistently throughout the day</em> — not just before runs.</p>
+
+    <div class="nutrition-table">
+      <div class="nutrition-row header">
+        <div class="nutrition-cell">Topic</div>
+        <div class="nutrition-cell">What helps</div>
+        <div class="nutrition-cell">What to avoid</div>
+      </div>
+      <div class="nutrition-row">
+        <div class="nutrition-cell"><div class="nutrition-label">Before a run</div></div>
+        <div class="nutrition-cell"><span class="nutrition-good">Light snack 60–90 min before</span> — banana, toast, oats. Something easy to digest.</div>
+        <div class="nutrition-cell"><span class="nutrition-bad">Heavy meals within 1 hour</span> — cramps, stitches, and sluggishness mid-run.</div>
+      </div>
+      <div class="nutrition-row">
+        <div class="nutrition-cell"><div class="nutrition-label">During a run</div></div>
+        <div class="nutrition-cell"><span class="nutrition-good">Water is fine</span> for runs under 45 minutes. Sip if you're thirsty — don't force it.</div>
+        <div class="nutrition-cell"><span class="nutrition-bad">Energy gels and sports drinks</span> are unnecessary for Zone 2 runs under 60 minutes. They train your body to rely on sugar.</div>
+      </div>
+      <div class="nutrition-row">
+        <div class="nutrition-cell"><div class="nutrition-label">After a run</div></div>
+        <div class="nutrition-cell"><span class="nutrition-good">Protein within 30–60 min</span> — eggs, Greek yogurt, chicken, beans. Kickstarts muscle repair.</div>
+        <div class="nutrition-cell"><span class="nutrition-bad">Skipping the post-run meal</span> — slows recovery and leaves you hungrier and more fatigued later.</div>
+      </div>
+      <div class="nutrition-row">
+        <div class="nutrition-cell"><div class="nutrition-label">Hydration</div></div>
+        <div class="nutrition-cell"><span class="nutrition-good">Drink consistently all day</span> — not just before runs. Pale yellow urine is the target.</div>
+        <div class="nutrition-cell"><span class="nutrition-bad">Chugging water right before</span> — causes sloshing, discomfort, and doesn't actually hydrate you faster.</div>
+      </div>
+      <div class="nutrition-row">
+        <div class="nutrition-cell"><div class="nutrition-label">Everyday eating</div></div>
+        <div class="nutrition-cell"><span class="nutrition-good">Whole foods, vegetables, lean protein, healthy fats</span> — supports fat adaptation and aerobic performance.</div>
+        <div class="nutrition-cell"><span class="nutrition-bad">Ultra-processed foods and excess sugar</span> — disrupt fat burning and blunt the Zone 2 adaptation signal.</div>
+      </div>
+    </div>
+
+    <div class="highlight amber">
+      <div class="highlight-text">You don't need to eat like an elite athlete. You need to eat like someone who respects the work they just put in.</div>
+      <div class="highlight-source">The simple nutrition principle for Zone 2 runners</div>
+    </div>
+
+  </div>
+
+  <hr class="ruled">
+
+  <!-- SECTION 4: WEEKLY RECOVERY CHECKLIST -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">04</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Put it all together</div>
+        <div class="section-title">Your weekly recovery checklist</div>
+      </div>
+    </div>
+
+    <p class="prose">You don't need to do all of this perfectly. But the more of these you consistently hit, the faster your aerobic base will grow and the better Saturday's club run will feel.</p>
+
+    <div class="checklist">
+      <div class="check-item"><div class="check-dot">✓</div><div><strong>Sleep 7–9 hours</strong> at least 5 nights this week — ideally every night. Prioritise this above any extra training.</div></div>
+      <div class="check-item"><div class="check-dot">✓</div><div><strong>Check your resting heart rate</strong> first thing in the morning. If it's 5+ bpm above your normal, go easier or take a rest day.</div></div>
+      <div class="check-item"><div class="check-dot">✓</div><div><strong>Drink water consistently</strong> throughout the day. Don't wait until you're thirsty before a run.</div></div>
+      <div class="check-item"><div class="check-dot">✓</div><div><strong>Eat a protein-rich meal</strong> within 60 minutes after your longer runs and club sessions.</div></div>
+      <div class="check-item"><div class="check-dot">✓</div><div><strong>Take rest days seriously.</strong> Monday rest is not optional — it's the day your body rebuilds from Saturday's club run.</div></div>
+      <div class="check-item"><div class="check-dot">✓</div><div><strong>Slow down when life is stressful.</strong> Adjust your MAF pace on hard weeks. Speed follows patience — and patience includes knowing when to back off.</div></div>
+      <div class="check-item"><div class="check-dot">✓</div><div><strong>Walk on your rest days</strong> if you feel like moving. A 20-minute walk keeps blood flowing without adding training stress.</div></div>
+      <div class="check-item"><div class="check-dot">✓</div><div><strong>Show up to Saturday's club run.</strong> Consistency over 8 weeks beats any single perfect session. The community keeps you accountable — use it.</div></div>
+    </div>
+
+    <a class="back-btn" href="index.html">← Back to home</a>
+
+  </div>
+
+</div>
+
+</body>
+</html>
