@@ -454,12 +454,203 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── MAF CALCULATOR ── */
+  .maf-section {
+    background: var(--ink);
+    border-radius: 20px;
+    padding: 36px;
+    margin: 36px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .maf-section::before {
+    content: 'MAF';
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 120px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .maf-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #5DBF72;
+    margin-bottom: 8px;
+  }
+  .maf-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(20px, 3.5vw, 26px);
+    font-weight: 600;
+    color: #F5F2EC;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .maf-desc {
+    font-size: 14px;
+    color: #7A7268;
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 28px;
+    max-width: 520px;
+  }
+  .maf-calc {
+    background: #161412;
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .maf-input-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .maf-input-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #8A8070;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .maf-input {
+    width: 100px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1.5px solid #2A2620;
+    background: #1E1C18;
+    color: #F5F2EC;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.15s;
+    -moz-appearance: textfield;
+  }
+  .maf-input::-webkit-outer-spin-button,
+  .maf-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .maf-input:focus { border-color: #5DBF72; }
+  .maf-formula {
+    font-size: 13px;
+    color: #4A4540;
+    font-style: italic;
+    font-family: 'Lora', serif;
+  }
+  .maf-result {
+    display: none;
+    background: #1A2A1C;
+    border: 1.5px solid #2E5C36;
+    border-radius: 12px;
+    padding: 24px 28px;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .maf-result.visible { display: flex; }
+  .maf-result-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: #5DBF72;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+  .maf-result-unit {
+    font-size: 14px;
+    color: #4A7A52;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: -4px;
+  }
+  .maf-result-text { flex: 1; min-width: 180px; }
+  .maf-result-headline {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #C8EDCC;
+    margin-bottom: 6px;
+  }
+  .maf-result-body {
+    font-size: 13px;
+    color: #6A8A70;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .maf-adjustments {
+    margin-top: 28px;
+  }
+  .maf-adj-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #4A4540;
+    margin-bottom: 12px;
+  }
+  .maf-adj-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .maf-adj-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #6A6258;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .maf-adj-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #3A5C42;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* ── MAF TEST ── */
+  .maf-test-card {
+    background: var(--green-pale);
+    border: 1px solid var(--green-light);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-top: 28px;
+  }
+  .maf-test-title {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .maf-test-body {
+    font-size: 14px;
+    color: #4A6050;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .maf-test-body strong { color: var(--green); font-weight: 500; }
+
   @media (max-width: 560px) {
     .info-grid { grid-template-columns: 1fr; }
     .zone-row { grid-template-columns: 44px 1fr 80px; }
     .zone-hr { display: none; }
     .hero { padding: 52px 20px 56px; }
     .main { padding: 44px 18px 60px; }
+    .maf-section { padding: 24px 20px; }
+    .maf-calc { padding: 20px; }
+    .maf-result-num { font-size: 56px; }
   }
 </style>
 </head>
@@ -541,10 +732,66 @@
 
   <hr class="ruled">
 
-  <!-- SECTION 2: WHY ZONE 2 -->
+  <!-- SECTION 1.5: MAF CALCULATOR -->
   <div class="section-block">
     <div class="section-label">
       <div class="section-num">02</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Inspired by Floris Gierman & Dr. Phil Maffetone</div>
+        <div class="section-title">Find your personal MAF heart rate</div>
+      </div>
+    </div>
+
+    <p class="prose">The talk test is great, but a heart rate number gives you something concrete to train to. Dr. Phil Maffetone — whose method coach Floris Gierman teaches — developed a simple formula that gives every runner their own aerobic ceiling. Stay under it on every easy run and your aerobic base will grow.</p>
+
+    <div class="maf-section">
+      <div class="maf-tag">The MAF 180 Formula</div>
+      <div class="maf-title">180 minus your age =<br>your maximum aerobic heart rate</div>
+      <div class="maf-desc">Enter your age below and we'll calculate your personal MAF number — the heart rate you should never exceed on easy and club runs. If your HR goes above this, slow down or walk until it comes back down.</div>
+
+      <div class="maf-calc">
+        <div class="maf-input-row">
+          <span class="maf-input-label">My age is</span>
+          <input class="maf-input" type="number" id="ageInput" min="10" max="90" placeholder="—" oninput="calcMAF()">
+          <span class="maf-formula">→ 180 − age = MAF</span>
+        </div>
+
+        <div class="maf-result" id="mafResult">
+          <div>
+            <div class="maf-result-num" id="mafNum">—</div>
+            <span class="maf-result-unit">bpm ceiling</span>
+          </div>
+          <div class="maf-result-text">
+            <div class="maf-result-headline" id="mafHeadline"></div>
+            <div class="maf-result-body" id="mafBody"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="maf-adjustments">
+        <div class="maf-adj-title">Adjust your number if any of these apply</div>
+        <div class="maf-adj-list">
+          <div class="maf-adj-item"><div class="maf-adj-dot"></div>Subtract 10 if you've been injured, sick, or just getting back into running after a long break</div>
+          <div class="maf-adj-item"><div class="maf-adj-dot"></div>Subtract 5 if you've been training inconsistently or get sick more than twice a year</div>
+          <div class="maf-adj-item"><div class="maf-adj-dot"></div>Add 5 if you've trained consistently for 2+ years with no injuries and good progress</div>
+          <div class="maf-adj-item"><div class="maf-adj-dot"></div>No heart rate monitor? Use the talk test — it gives you the same result</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="maf-test-card">
+      <div class="maf-test-title">📍 The MAF Progress Test — How to know it's working</div>
+      <div class="maf-test-body">Every 4 weeks, run the same flat route at <strong>exactly your MAF heart rate</strong> and record your pace. As your aerobic base builds, you'll cover the same distance faster at the same heart rate. That improvement — same effort, more speed — is the clearest sign your engine is growing. Most people see their first improvement around weeks 4–6.</div>
+    </div>
+
+  </div>
+
+  <hr class="ruled">
+
+  <!-- SECTION 2: WHY ZONE 2 (renumbered) -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">03</div>
       <div class="section-title-wrap">
         <div class="section-eyebrow">The science (simplified)</div>
         <div class="section-title">Why does Zone 2 work?</div>
@@ -589,7 +836,7 @@
   <!-- SECTION 3: HOW TO DO IT -->
   <div class="section-block">
     <div class="section-label">
-      <div class="section-num">03</div>
+      <div class="section-num">04</div>
       <div class="section-title-wrap">
         <div class="section-eyebrow">The practice</div>
         <div class="section-title">How to actually run Zone 2</div>
@@ -689,5 +936,37 @@
 
 </div>
 
+<script>
+  function calcMAF() {
+    const age = parseInt(document.getElementById('ageInput').value);
+    const result = document.getElementById('mafResult');
+    const num = document.getElementById('mafNum');
+    const headline = document.getElementById('mafHeadline');
+    const body = document.getElementById('mafBody');
+
+    if (!age || age < 10 || age > 90) {
+      result.classList.remove('visible');
+      return;
+    }
+
+    const maf = 180 - age;
+    num.textContent = maf;
+    result.classList.add('visible');
+
+    if (age <= 25) {
+      headline.textContent = 'Keep every easy run under ' + maf + ' bpm';
+      body.textContent = 'At your age your aerobic ceiling is relatively high. The temptation will be to go faster — resist it. Slowing down now builds a bigger base for the future.';
+    } else if (age <= 40) {
+      headline.textContent = 'Your aerobic training zone ceiling is ' + maf + ' bpm';
+      body.textContent = 'If your heart rate creeps above this on easy runs, slow down or take a walk break immediately. Most runners in your age group need to slow down significantly more than they expect.';
+    } else if (age <= 55) {
+      headline.textContent = 'Stay under ' + maf + ' bpm on every easy and club run';
+      body.textContent = 'At this age the MAF method works especially well — the aerobic base responds strongly to consistent easy effort. Be patient in the early weeks when you may need to walk more than run.';
+    } else {
+      headline.textContent = 'Your MAF ceiling is ' + maf + ' bpm — and it works powerfully at your age';
+      body.textContent = 'Floris Gierman has coached runners well into their 60s and 70s using this exact approach. The aerobic system responds at any age. Consistency and patience are your biggest assets.';
+    }
+  }
+</script>
 </body>
 </html>
