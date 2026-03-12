@@ -352,7 +352,8 @@
   }
   .edu-card.zone2:hover    { border-color: var(--green); }
   .edu-card.pyramid:hover  { border-color: var(--teal); }
-  .edu-card.recovery:hover { border-color: #1A4FA0; }
+  .edu-card.recovery:hover   { border-color: #1A4FA0; }
+  .edu-card.expect:hover     { border-color: #8A5C08; }
 
   .edu-card-top {
     display: flex;
@@ -373,6 +374,8 @@
   .zone2 .edu-icon     { background: rgba(58,125,68,0.15); }
   .pyramid .edu-icon   { background: rgba(10,123,108,0.15); }
   .recovery .edu-icon  { background: rgba(26,79,160,0.12); }
+  .expect .edu-icon    { background: rgba(90,45,138,0.12); }
+  .expect .edu-icon    { background: rgba(138,92,8,0.12); }
 
   .edu-tag {
     font-size: 9px;
@@ -385,6 +388,8 @@
   .zone2 .edu-tag      { background: rgba(58,125,68,0.15); color: var(--green-mid); }
   .pyramid .edu-tag    { background: rgba(10,123,108,0.15); color: var(--teal-mid); }
   .recovery .edu-tag   { background: rgba(26,79,160,0.12); color: #6A9FE0; }
+  .expect .edu-tag     { background: rgba(90,45,138,0.12); color: #9A6DC8; }
+  .expect .edu-tag     { background: rgba(138,92,8,0.1); color: #9A6C08; }
 
   .edu-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -416,6 +421,8 @@
   .zone2 .edu-read   { color: var(--green-mid); }
   .pyramid .edu-read { color: var(--teal-mid); }
   .recovery .edu-read { color: #6A9FE0; }
+  .expect .edu-read   { color: #9A6DC8; }
+  .expect .edu-read   { color: #9A6C08; }
   .edu-arrow {
     font-size: 14px;
     transition: transform 0.2s;
@@ -423,6 +430,8 @@
   .zone2 .edu-arrow   { color: var(--green-mid); }
   .pyramid .edu-arrow { color: var(--teal-mid); }
   .recovery .edu-arrow { color: #6A9FE0; }
+  .expect .edu-arrow   { color: #9A6DC8; }
+  .expect .edu-arrow   { color: #9A6C08; }
   .edu-card:hover .edu-arrow { transform: translateX(5px); }
 
   /* ── MANTRA STRIP ── */
@@ -898,6 +907,19 @@
       </div>
       <div class="edu-title">Recovery & Lifestyle</div>
       <p class="edu-desc">Sleep, stress, and nutrition — the 23 hours outside your run that determine whether the training actually sticks. The most overlooked part of getting faster.</p>
+      <div class="edu-footer">
+        <span class="edu-read">Read guide</span>
+        <span class="edu-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="edu-card expect" href="what-to-expect.html">
+      <div class="edu-card-top">
+        <div class="edu-icon">🗓️</div>
+        <span class="edu-tag">Honest Guide</span>
+      </div>
+      <div class="edu-title">What to Expect</div>
+      <p class="edu-desc">Weeks 1–3 feel slow and wrong. That's normal. An honest timeline from the week 1 shuffle all the way to the 6-month transformation.</p>
       <div class="edu-footer">
         <span class="edu-read">Read guide</span>
         <span class="edu-arrow">→</span>
