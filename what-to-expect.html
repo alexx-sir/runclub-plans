@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What to Expect — Run Not Gasp Run Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F5F0;
+    --ink: #1A1612;
+    --muted: #8A8070;
+    --border: #E2DAD0;
+    --green: #2E7D44;
+    --green-mid: #4A9E5C;
+    --green-light: #EAF4EC;
+    --green-pale: #F2FAF4;
+    --card: #FFFFFF;
+    --orange: #B84A08;
+    --orange-light: #FDF0E8;
+    --amber: #8A5C08;
+    --amber-light: #FDF6E3;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--ink); }
+
+  /* ── NAV ── */
+  .nav {
+    background: #0D0D0D;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.06em; color: #F5F2EC; text-decoration: none; }
+  .nav-logo span { color: #5DBF72; }
+  .nav-back { font-size: 12px; font-weight: 500; color: #5A5248; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.15s; }
+  .nav-back:hover { color: #5DBF72; }
+
+  /* ── HERO ── */
+  .hero {
+    background: #3A2A1A;
+    padding: 72px 32px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'WEEK 1';
+    position: absolute;
+    right: -30px;
+    top: -10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 180px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; }
+  .hero-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 18px; }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 13vw, 110px); color: #fff; line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 24px; }
+  .hero-title em { font-family: 'Lora', serif; font-style: italic; font-weight: 400; color: rgba(255,255,255,0.65); font-size: 0.5em; display: block; letter-spacing: 0; line-height: 1.4; margin-top: 8px; }
+  .hero-sub { font-size: 16px; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.7; max-width: 500px; margin: 0 auto; }
+
+  /* ── MAIN ── */
+  .main { max-width: 760px; margin: 0 auto; padding: 60px 24px 80px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-label { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+  .section-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--green-light); line-height: 1; flex-shrink: 0; width: 48px; text-align: center; }
+  .section-eyebrow { font-size: 9px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 3px; }
+  .section-title { font-family: 'Lora', serif; font-size: clamp(22px, 4vw, 30px); font-weight: 600; color: var(--ink); line-height: 1.15; }
+  .section-block { margin-bottom: 72px; animation: fadeUp 0.7s ease both; }
+  .section-block:nth-child(1) { animation-delay: 0.1s; }
+  .section-block:nth-child(2) { animation-delay: 0.2s; }
+  .section-block:nth-child(3) { animation-delay: 0.3s; }
+  .section-block:nth-child(4) { animation-delay: 0.4s; }
+
+  /* ── PROSE ── */
+  .prose { font-family: 'Lora', serif; font-size: 17px; line-height: 1.8; color: #3A3228; font-weight: 400; margin-bottom: 20px; }
+  .prose strong { font-weight: 600; color: var(--ink); }
+  .prose em { font-style: italic; color: var(--green); }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight { border-radius: 16px; padding: 28px 32px; margin: 28px 0; position: relative; overflow: hidden; }
+  .highlight.green  { background: var(--green); }
+  .highlight.dark   { background: #3A2A1A; }
+  .highlight.orange { background: var(--orange); }
+  .highlight::before { content: '"'; position: absolute; top: -20px; left: 16px; font-family: 'Lora', serif; font-size: 120px; color: rgba(255,255,255,0.08); line-height: 1; }
+  .highlight-text { font-family: 'Lora', serif; font-size: clamp(16px, 2.8vw, 22px); font-style: italic; color: #fff; line-height: 1.55; position: relative; }
+  .highlight-source { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 12px; font-family: 'DM Sans', sans-serif; position: relative; }
+
+  /* ── TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; margin: 28px 0; position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 23px; top: 28px; bottom: 28px; width: 2px; background: var(--border); }
+  .timeline-item { display: flex; gap: 20px; align-items: flex-start; padding: 6px 0 28px; position: relative; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; position: relative; z-index: 1;
+    font-family: 'Bebas Neue', sans-serif; font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+  .tl-dot.hard   { background: #C03828; color: white; }
+  .tl-dot.mixed  { background: var(--orange); color: white; }
+  .tl-dot.click  { background: var(--amber); color: white; }
+  .tl-dot.good   { background: var(--green); color: white; }
+  .tl-dot.great  { background: #1A6B30; color: white; }
+  .tl-content { padding-top: 10px; }
+  .tl-period { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 4px; }
+  .tl-title { font-family: 'Lora', serif; font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; line-height: 1.2; }
+  .tl-body { font-size: 14px; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .tl-body strong { color: var(--ink); font-weight: 500; }
+
+  /* ── FEELINGS CARDS ── */
+  .feelings { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+  .feeling-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; display: flex; gap: 16px; align-items: flex-start; }
+  .feeling-icon { font-size: 22px; flex-shrink: 0; }
+  .feeling-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .feeling-body { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+  .feeling-body strong { color: var(--ink); font-weight: 500; }
+  .feeling-tag {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 99px; margin-left: 8px; vertical-align: middle;
+  }
+  .feeling-tag.normal { background: var(--green-light); color: var(--green); }
+  .feeling-tag.warning { background: #FDF0E8; color: var(--orange); }
+
+  /* ── AFTER SECTION ── */
+  .after-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
+  .after-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+  .after-icon { font-size: 26px; margin-bottom: 12px; }
+  .after-title { font-family: 'Lora', serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .after-body { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+  .after-body strong { color: var(--ink); font-weight: 500; }
+
+  /* ── DIVIDER ── */
+  .ruled { border: none; border-top: 1px solid var(--border); margin: 0 0 56px; }
+
+  /* ── BACK BUTTON ── */
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: white; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: 500; transition: background 0.15s, transform 0.15s; margin-top: 16px; }
+  .back-btn:hover { background: #256636; transform: translateY(-2px); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 560px) {
+    .after-grid { grid-template-columns: 1fr; }
+    .hero { padding: 52px 20px 56px; }
+    .main { padding: 44px 18px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html">Run Not Gasp<span> Run Club</span></a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Run Not Gasp Run Club · Honest Guide</p>
+    <h1 class="hero-title">What to<em>Expect</em></h1>
+    <p class="hero-sub">The first few weeks will feel wrong. That's not a sign the method is failing — it's a sign it's working. Here's exactly what's coming and why.</p>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SECTION 1: THE FIRST WEEKS -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">01</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">Weeks 1–3 — the hardest part</div>
+        <div class="section-title">It's going to feel insultingly slow</div>
+      </div>
+    </div>
+
+    <p class="prose">Here is what nobody tells you about starting MAF training: <strong>for the first 2–4 weeks, you will have to run slower than feels reasonable.</strong> Some people have to shuffle. Some have to walk significant portions of the run just to keep their heart rate under their MAF number. This is not a failure. This is the most important diagnostic the method gives you.</p>
+
+    <p class="prose">If you have to slow way down to stay in Zone 2, it means your aerobic base — your mitochondria, your cardiac output, your fat-burning engine — is underdeveloped. That underdevelopment is exactly why you've been getting winded. <em>The shuffling pace is the starting line, not the finish line.</em></p>
+
+    <div class="highlight dark">
+      <div class="highlight-text">If you have to slow down more than you expected, that's not you failing the plan. That's the plan diagnosing your aerobic fitness accurately — probably for the first time.</div>
+      <div class="highlight-source">Floris Gierman — Extramilest Method</div>
+    </div>
+
+    <p class="prose">Most runners who get winded have been training in the "grey zone" for years — too fast to build aerobic base, too slow to build real speed. The MAF method takes you out of the grey zone entirely. The first weeks are uncomfortable because you're running far slower than you're used to. Stick with it.</p>
+
+    <div class="feelings">
+      <div class="feeling-card">
+        <div class="feeling-icon">🐢</div>
+        <div>
+          <div class="feeling-title">Having to walk to stay under MAF <span class="feeling-tag normal">Normal</span></div>
+          <div class="feeling-body">Walk breaks are Zone 2. Brisk walking keeps you in the right zone. <strong>You are still training effectively.</strong> Within 4–6 weeks, the same effort will carry you further without the walks.</div>
+        </div>
+      </div>
+      <div class="feeling-card">
+        <div class="feeling-icon">🤏</div>
+        <div>
+          <div class="feeling-title">Feeling like you could go much faster <span class="feeling-tag normal">Normal</span></div>
+          <div class="feeling-body">Zone 2 should feel almost too easy. If it feels easy, you're doing it right. The difficulty is mental — trusting that slow is building something real.</div>
+        </div>
+      </div>
+      <div class="feeling-card">
+        <div class="feeling-icon">😤</div>
+        <div>
+          <div class="feeling-title">Frustration with the pace <span class="feeling-tag normal">Normal</span></div>
+          <div class="feeling-body">Every intermediate runner feels this. Floris warns about it explicitly. The frustration usually breaks around week 4–5 when you notice your easy pace has quietly improved. <strong>Wait for that moment.</strong></div>
+        </div>
+      </div>
+      <div class="feeling-card">
+        <div class="feeling-icon">💨</div>
+        <div>
+          <div class="feeling-title">Still getting winded in week 1–2 <span class="feeling-tag normal">Normal</span></div>
+          <div class="feeling-body">Your aerobic system takes 3–6 weeks to begin adapting. Keep your heart rate under MAF. The breathing will come.</div>
+        </div>
+      </div>
+      <div class="feeling-card">
+        <div class="feeling-icon">🚨</div>
+        <div>
+          <div class="feeling-title">Sharp pain in joints or muscles <span class="feeling-tag warning">See a physio</span></div>
+          <div class="feeling-body">General fatigue and muscle soreness are fine. Sharp, localised pain in knees, ankles, or hips is not normal. <strong>Don't run through sharp pain.</strong> Take an extra rest day and get it looked at.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="ruled">
+
+  <!-- SECTION 2: THE ADAPTATION TIMELINE -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">02</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">The honest aerobic timeline</div>
+        <div class="section-title">When things start to change</div>
+      </div>
+    </div>
+
+    <p class="prose">The 8-week plan gets you to a 5K finish line. But the aerobic base it starts building is something that compounds for months and years. <strong>Here's what the real timeline looks like</strong> — so you don't expect too much too soon, and don't quit right before the breakthrough.</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="tl-dot hard">W1–2</div>
+        <div class="tl-content">
+          <div class="tl-period">Weeks 1–2</div>
+          <div class="tl-title">The humbling</div>
+          <div class="tl-body">Your MAF pace is probably slower than expected. Walks are frequent. Your legs feel fine but your heart rate climbs fast. <strong>This is normal.</strong> Your cardiovascular system hasn't caught up to your legs yet. Stay patient.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot mixed">W3–4</div>
+        <div class="tl-content">
+          <div class="tl-period">Weeks 3–4</div>
+          <div class="tl-title">Small signs of life</div>
+          <div class="tl-body">The walks get shorter. You might go 10–15 minutes without needing one. Your resting heart rate may start to drop slightly. <strong>The mitochondria are starting to multiply.</strong> Not dramatic yet — but something is shifting.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot click">W5–6</div>
+        <div class="tl-content">
+          <div class="tl-period">Weeks 5–6</div>
+          <div class="tl-title">The first click</div>
+          <div class="tl-body">Most runners have a moment around week 5 where something feels different — the same effort covers more ground. The talk test suddenly feels easy. <strong>This is your aerobic engine turning over for the first time.</strong> It's small, but it's real progress.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot good">W7–8</div>
+        <div class="tl-content">
+          <div class="tl-period">Weeks 7–8 — Race Week</div>
+          <div class="tl-title">You can feel the base</div>
+          <div class="tl-body">Your easy pace has improved. The club run feels manageable. You cross the 5K finish line breathing — not gasping. <strong>That's the whole point.</strong> Eight weeks of patience paid off in a single moment.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot good">M2–3</div>
+        <div class="tl-content">
+          <div class="tl-period">Months 2–3</div>
+          <div class="tl-title">Real improvement visible</div>
+          <div class="tl-body">If you keep training, your MAF pace will be noticeably faster than week 1 at the same heart rate. Fat burning has improved. Easy runs feel genuinely easy. <strong>People start commenting that you look like a runner.</strong></div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot great">M4–6</div>
+        <div class="tl-content">
+          <div class="tl-period">Months 4–6</div>
+          <div class="tl-title">The transformation</div>
+          <div class="tl-body">Floris says this is where the aerobic base really locks in. Your easy pace may be 1–3 min/mile faster than it was at the start. You can run for an hour without getting winded. <strong>Speed sessions actually produce speed now</strong> — because the base is strong enough to absorb them.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight green">
+      <div class="highlight-text">Most people quit at week 3, right before the breakthrough. The runners who trust the process past that point are the ones who transform.</div>
+      <div class="highlight-source">Floris Gierman — Extramilest Podcast</div>
+    </div>
+
+  </div>
+
+  <hr class="ruled">
+
+  <!-- SECTION 3: AFTER THE 5K -->
+  <div class="section-block">
+    <div class="section-label">
+      <div class="section-num">03</div>
+      <div class="section-title-wrap">
+        <div class="section-eyebrow">After race day</div>
+        <div class="section-title">What comes after the 5K</div>
+      </div>
+    </div>
+
+    <p class="prose">The 5K is not the end — it's the first proof point. You've built a real aerobic base. Now the question is what you do with it. <strong>Most people who cross that finish line breathing easy want to keep going.</strong> Here's what the path forward looks like.</p>
+
+    <div class="after-grid">
+      <div class="after-card">
+        <div class="after-icon">📅</div>
+        <div class="after-title">Keep coming to Saturday club runs</div>
+        <div class="after-body">The club run doesn't stop at week 8. <strong>Consistency over months</strong> is what turns a decent aerobic base into a strong one. Show up Saturdays.</div>
+      </div>
+      <div class="after-card">
+        <div class="after-icon">🔄</div>
+        <div class="after-title">Restart the plan at a higher level</div>
+        <div class="after-body">Beginners can move to the intermediate plan. Intermediates can repeat the plan with higher volume easy runs. <strong>The base builds every cycle.</strong></div>
+      </div>
+      <div class="after-card">
+        <div class="after-icon">🏅</div>
+        <div class="after-title">Set a new race goal</div>
+        <div class="after-body">10K, half marathon, or a faster 5K — having a goal on the calendar keeps you consistent. <strong>Find a local race 8–12 weeks out</strong> and build toward it.</div>
+      </div>
+      <div class="after-card">
+        <div class="after-icon">📊</div>
+        <div class="after-title">Run a MAF progress test</div>
+        <div class="after-body">Pick the same flat route you used in week 1. Run at exactly your MAF heart rate for 20–30 minutes and compare your pace. <strong>That gap is your 8 weeks of work.</strong></div>
+      </div>
+      <div class="after-card">
+        <div class="after-icon">📻</div>
+        <div class="after-title">Dig into Floris's podcast</div>
+        <div class="after-body">The Extramilest podcast goes deep on MAF training, nutrition, mindset, and long-term progression. <strong>Start with any episode on MAF training for beginners.</strong></div>
+      </div>
+      <div class="after-card">
+        <div class="after-icon">🤝</div>
+        <div class="after-title">Bring a friend to Saturday</div>
+        <div class="after-body">The hardest part of staying consistent is doing it alone. <strong>Every runner you bring to Saturday is one more person who finishes their 5K breathing easy.</strong></div>
+      </div>
+    </div>
+
+    <div class="highlight orange">
+      <div class="highlight-text">The 5K wasn't the goal. The 5K was the proof. The real goal was building an engine that lasts.</div>
+      <div class="highlight-source">Run Not Gasp Run Club</div>
+    </div>
+
+    <a class="back-btn" href="index.html">← Back to home</a>
+
+  </div>
+
+</div>
+
+</body>
+</html>
