@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Run Not Gasp Run Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F5F0;
+    --ink: #1A1612;
+    --muted: #8A8070;
+    --border: #E2DAD0;
+    --green: #2E7D44;
+    --green-mid: #4A9E5C;
+    --green-light: #EAF4EC;
+    --green-pale: #F2FAF4;
+    --card: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--ink); }
+
+  /* ── NAV ── */
+  .nav {
+    background: #0D0D0D;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.06em; color: #F5F2EC; text-decoration: none; }
+  .nav-logo span { color: #5DBF72; }
+  .nav-back { font-size: 12px; font-weight: 500; color: #5A5248; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.15s; }
+  .nav-back:hover { color: #5DBF72; }
+
+  /* ── HERO ── */
+  .hero {
+    background: #0D2B1A;
+    padding: 72px 32px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'FAQ';
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 280px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; }
+  .hero-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 18px; }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 15vw, 120px); color: #fff; line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 24px; }
+  .hero-title em { font-family: 'Lora', serif; font-style: italic; font-weight: 400; color: rgba(255,255,255,0.6); font-size: 0.48em; display: block; letter-spacing: 0; line-height: 1.4; margin-top: 8px; }
+  .hero-sub { font-size: 16px; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+
+  /* ── MAIN ── */
+  .main { max-width: 720px; margin: 0 auto; padding: 60px 24px 80px; }
+
+  /* ── CATEGORY LABEL ── */
+  .cat-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    margin-top: 52px;
+  }
+  .cat-label:first-child { margin-top: 0; }
+  .cat-icon { font-size: 20px; }
+  .cat-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .cat-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ── ACCORDION ── */
+  .faq-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+
+  .faq-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-item.open { border-color: var(--green); }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 22px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .faq-q-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .faq-item.open .faq-q-text { color: var(--green); }
+  .faq-chevron {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #F5F2EC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--muted);
+    transition: background 0.2s, transform 0.25s, color 0.2s;
+  }
+  .faq-item.open .faq-chevron {
+    background: var(--green-light);
+    color: var(--green);
+    transform: rotate(180deg);
+  }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.32s ease, padding 0.2s ease;
+    padding: 0 22px;
+  }
+  .faq-item.open .faq-a {
+    max-height: 600px;
+    padding: 0 22px 22px;
+  }
+  .faq-a-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #3A3228;
+    font-weight: 400;
+  }
+  .faq-a-inner strong { font-weight: 600; color: var(--ink); }
+  .faq-a-inner em { font-style: italic; color: var(--green); }
+  .faq-a-inner a { color: var(--green); text-decoration: underline; }
+
+  /* ── BOTTOM CTA ── */
+  .bottom-cta {
+    background: var(--ink);
+    border-radius: 20px;
+    padding: 40px 36px;
+    text-align: center;
+    margin-top: 64px;
+  }
+  .bottom-cta-icon { font-size: 36px; margin-bottom: 16px; }
+  .bottom-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.04em;
+    color: #F5F2EC;
+    margin-bottom: 10px;
+  }
+  .bottom-cta-body {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    line-height: 1.65;
+    max-width: 400px;
+    margin: 0 auto 24px;
+  }
+  .bottom-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .bottom-cta-btn:hover { background: #256636; transform: translateY(-2px); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .main { animation: fadeUp 0.6s ease both; }
+
+  @media (max-width: 560px) {
+    .hero { padding: 52px 20px 56px; }
+    .main { padding: 44px 18px 60px; }
+    .bottom-cta { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">Run Not Gasp<span> Run Club</span></a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Run Not Gasp Run Club · The real questions</p>
+    <h1 class="hero-title">FAQ<em>No stupid questions.</em></h1>
+    <p class="hero-sub">The stuff people are too shy to ask in the group chat — answered honestly.</p>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- CATEGORY: SHOWING UP -->
+  <div class="cat-label">
+    <span class="cat-icon">👟</span>
+    <span class="cat-title">Showing Up</span>
+    <span class="cat-line"></span>
+  </div>
+  <div class="faq-group">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">What if I'm the slowest person there?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Then you're running at exactly the right pace. <strong>This club is built around Zone 2 training — which means everyone is running slower than they're capable of.</strong> The fastest runners in the group are deliberately holding back. Nobody is racing on Saturday morning. If you're moving and talking, you're doing it right.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">I haven't run in years. Is this for me?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Yes — and honestly, the beginner plan was written for exactly this situation. <strong>You don't need to be able to run continuously to start.</strong> The first few weeks include walk breaks by design, not as a fallback. If you can walk briskly for 20 minutes, you can start Week 1 of the beginner plan right now.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">What time and where do you meet?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <strong>Saturdays at 9am.</strong> The location rotates around the East Bay — San Lorenzo, San Leandro, Hayward, Union City, and Fremont. Check the homepage for the current meetup spot. The run itself is 20–45 minutes depending on which week of the plan you're on. You don't need to run the whole time.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">Do I need to sign up or register?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        No registration, no fees, no commitment. <strong>Just show up.</strong> You don't need to tell anyone you're coming. Walk up, introduce yourself, and run. That's it.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">What if I can only make it some Saturdays?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Come when you can. <strong>The club run is the Saturday session in the training plan — if you miss it, you can run solo that day instead.</strong> But showing up even occasionally keeps you accountable and connected to the group in a way solo running doesn't. Any Saturday is better than no Saturday.
+      </div></div>
+    </div>
+
+  </div>
+
+  <!-- CATEGORY: GEAR -->
+  <div class="cat-label">
+    <span class="cat-icon">⌚</span>
+    <span class="cat-title">Gear & Kit</span>
+    <span class="cat-line"></span>
+  </div>
+  <div class="faq-group">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">Do I need a heart rate monitor?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        No — but it helps. <strong>The talk test is a completely valid way to stay in Zone 2.</strong> If you can speak in full sentences without pausing for breath, you're in Zone 2. If you can only manage 3–4 words before needing air, you're too fast. A heart rate monitor just makes this more precise — it doesn't replace the feel. If you want one, any GPS watch with wrist HR (Garmin, Coros, Apple Watch) works fine. You don't need anything expensive.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">What shoes do I need?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <strong>Any running shoe that fits properly.</strong> You don't need a specific brand or model. The most important thing is that the shoe fits your foot shape and doesn't cause pain. If you're starting from scratch, go to a local running store (Road Runner Sports in San Leandro is a good option) and get a proper fitting — they'll watch you walk and recommend something based on your gait. Budget $100–140 for a decent pair that will last 400–500 miles.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">Do I need to bring water?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        For runs under 45 minutes in normal weather, <strong>you don't need to carry water during the run</strong> — just hydrate well before you leave home. On hot East Bay mornings (above 75°F), bringing a small bottle or wearing a hydration vest is a good idea. Sip if you're thirsty, don't force it.
+      </div></div>
+    </div>
+
+  </div>
+
+  <!-- CATEGORY: THE TRAINING -->
+  <div class="cat-label">
+    <span class="cat-icon">🏃</span>
+    <span class="cat-title">The Training</span>
+    <span class="cat-line"></span>
+  </div>
+  <div class="faq-group">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">Why is my pace so slow when I try to stay in Zone 2?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Because your aerobic base is underdeveloped — and that's exactly what this plan is designed to fix. <strong>Most runners who get winded have been training in the "grey zone" for years:</strong> too fast to build aerobic fitness, too slow to build real speed. The slow pace you're seeing right now is a diagnostic, not a permanent state. Stick with the MAF heart rate for 6–8 weeks and your easy pace will improve noticeably at the same heart rate.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">Can I skip the easy days and just do the hard sessions?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        No — and this is one of the most common mistakes. <strong>The easy days aren't filler. They're where your aerobic base grows.</strong> The hard sessions (tempo, intervals) are only effective because the easy days build the foundation underneath them. Skipping easy days and doubling up on hard sessions leads to injury and stagnation, not faster progress.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">What if I miss a week?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <strong>Just pick up where you left off.</strong> Don't try to squeeze two weeks into one. If you missed more than two weeks, repeat the last week you completed rather than jumping ahead. Life happens — one skipped week in an 8-week plan is not going to derail your progress. Consistency over time matters far more than any single week.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">Which plan should I start with?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <strong>If you can't currently run 5K without stopping — start with Your First 5K.</strong> If you can already run 5K but always finish winded and struggling — start with Building the Engine. When in doubt, start with the beginner plan. It's better to find it slightly easy and progress quickly than to start too advanced and burn out by week 3.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">Do I have to run every session on the exact day listed?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        The day layout is a guide, not a rule. <strong>The things that matter are: keep Saturday as your club run, keep at least one full rest day between hard sessions, and don't run hard two days in a row.</strong> If Tuesday's run needs to move to Monday or Wednesday, that's fine. Just preserve the hard/easy alternation.
+      </div></div>
+    </div>
+
+  </div>
+
+  <!-- CATEGORY: BODIES -->
+  <div class="cat-label">
+    <span class="cat-icon">💪</span>
+    <span class="cat-title">Bodies & Health</span>
+    <span class="cat-line"></span>
+  </div>
+  <div class="faq-group">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">Can I do this if I'm overweight?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Yes. <strong>Zone 2 training is actually particularly well-suited for people carrying extra weight</strong> because it's low-impact at low intensity, and the walk breaks built into the beginner plan reduce joint stress significantly. The MAF method doesn't care what you weigh — it responds to your heart rate. Start with the beginner plan, honour the walk breaks, and let the aerobic base build at whatever pace your body allows. If you have any specific health concerns, check in with your doctor before starting.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">I get a stitch in my side when I run. What do I do?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Side stitches are almost always caused by going too fast (above Zone 2), eating too close to the run, or shallow breathing. <strong>The fix: slow down, take a walk break, and breathe deeply from your belly.</strong> If you're staying in Zone 2 and still getting stitches regularly, try not eating for 90 minutes before a run and focus on exhaling fully on every breath. They usually disappear within a few weeks as your aerobic fitness improves.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">My knees hurt after running. Should I push through?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <strong>Never push through sharp or localised knee pain.</strong> General muscle soreness after a new training stimulus is normal. Sharp pain in or around the knee joint is not. Take 2–3 days off, ice if swollen, and if it doesn't resolve see a physio. Runner's knee (patellofemoral pain) and IT band issues are the two most common — both are very treatable if caught early and very stubborn if ignored. Coming back 2 weeks later is far better than being sidelined for 2 months.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        <span class="faq-q-text">Is it okay to run when I'm sick?</span>
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Use the neck rule. <strong>Symptoms above the neck</strong> (runny nose, sneezing, mild sore throat) — an easy Zone 2 run is usually fine. <strong>Symptoms below the neck</strong> (chest tightness, body aches, fever, fatigue) — rest completely. Running through a chest or systemic illness extends it and risks turning a 3-day bug into a 10-day one. When in doubt, rest. One skipped run will not undo your fitness.
+      </div></div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="bottom-cta">
+    <div class="bottom-cta-icon">📅</div>
+    <div class="bottom-cta-title">Still have questions?</div>
+    <div class="bottom-cta-body">The best way to get answers is to show up Saturday morning. The group is friendly and nobody bites.</div>
+    <a class="bottom-cta-btn" href="index.html#meetup">See this week's meetup →</a>
+  </div>
+
+</div>
+
+<script>
+  function toggle(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    // open this one if it was closed
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
