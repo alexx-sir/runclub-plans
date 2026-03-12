@@ -354,6 +354,7 @@
   .edu-card.pyramid:hover  { border-color: var(--teal); }
   .edu-card.recovery:hover   { border-color: #1A4FA0; }
   .edu-card.expect:hover     { border-color: #8A5C08; }
+  .edu-card.faq:hover        { border-color: #0D2B1A; }
 
   .edu-card-top {
     display: flex;
@@ -376,6 +377,7 @@
   .recovery .edu-icon  { background: rgba(26,79,160,0.12); }
   .expect .edu-icon    { background: rgba(90,45,138,0.12); }
   .expect .edu-icon    { background: rgba(138,92,8,0.12); }
+  .faq .edu-icon       { background: rgba(13,43,26,0.1); }
 
   .edu-tag {
     font-size: 9px;
@@ -390,6 +392,7 @@
   .recovery .edu-tag   { background: rgba(26,79,160,0.12); color: #6A9FE0; }
   .expect .edu-tag     { background: rgba(90,45,138,0.12); color: #9A6DC8; }
   .expect .edu-tag     { background: rgba(138,92,8,0.1); color: #9A6C08; }
+  .faq .edu-tag        { background: rgba(13,43,26,0.1); color: #2E7D44; }
 
   .edu-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -423,6 +426,7 @@
   .recovery .edu-read { color: #6A9FE0; }
   .expect .edu-read   { color: #9A6DC8; }
   .expect .edu-read   { color: #9A6C08; }
+  .faq .edu-read      { color: #2E7D44; }
   .edu-arrow {
     font-size: 14px;
     transition: transform 0.2s;
@@ -432,6 +436,7 @@
   .recovery .edu-arrow { color: #6A9FE0; }
   .expect .edu-arrow   { color: #9A6DC8; }
   .expect .edu-arrow   { color: #9A6C08; }
+  .faq .edu-arrow      { color: #2E7D44; }
   .edu-card:hover .edu-arrow { transform: translateX(5px); }
 
   /* ── MANTRA STRIP ── */
@@ -706,6 +711,66 @@
     .phil-pillars { grid-template-columns: 1fr; }
   }
 
+  /* ── PLAYLIST ── */
+  .playlist-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+  .playlist-card {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid rgba(93,191,114,0.3);
+  }
+  .playlist-card.collab-pl { border-color: rgba(93,191,114,0.3); }
+  .playlist-badge {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: var(--green-pale);
+    color: var(--green-mid);
+  }
+  .playlist-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--green-mid);
+  }
+  .playlist-desc {
+    font-size: 14px;
+    color: var(--muted2);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .playlist-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 4px;
+    transition: opacity 0.15s, transform 0.15s;
+    width: fit-content;
+    background: var(--green-pale);
+    color: var(--green-mid);
+  }
+  .playlist-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  @media (max-width: 680px) {
+    .playlist-grid { grid-template-columns: 1fr; }
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -926,6 +991,19 @@
       </div>
     </a>
 
+    <a class="edu-card faq" href="faq.html">
+      <div class="edu-card-top">
+        <div class="edu-icon">💬</div>
+        <span class="edu-tag">Real Questions</span>
+      </div>
+      <div class="edu-title">FAQ</div>
+      <p class="edu-desc">Do I need a heart rate monitor? What if I'm the slowest? Can I do this if I'm overweight? The questions people are too shy to ask in the group chat.</p>
+      <div class="edu-footer">
+        <span class="edu-read">Read FAQ</span>
+        <span class="edu-arrow">→</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -973,6 +1051,34 @@
     </div>
   </div>
 </div>
+
+<!-- ══ PLAYLIST ══ -->
+<section class="section" id="music">
+  <div class="section-header">
+    <div class="section-tag">Music</div>
+    <div class="section-heading">The club<br>playlist</div>
+    <p class="section-sub">One playlist, everyone's music. Add your go-to running songs and run to what the whole club is listening to.</p>
+  </div>
+
+  <div class="playlist-grid">
+
+    <div class="playlist-card collab-pl">
+      <div class="playlist-top">
+        <div class="playlist-icon">🎧</div>
+        <div class="playlist-badge">Club Playlist</div>
+      </div>
+      <div class="playlist-title">Run Not Gasp Mix</div>
+      <p class="playlist-desc">Everyone's music. One playlist. Add your go-to running songs and discover what the rest of the club is running to.</p>
+      <a class="playlist-btn" href="#" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        Open in Spotify
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<hr class="sep">
 
 <!-- ══ MANTRA ══ -->
 <div class="mantra">
