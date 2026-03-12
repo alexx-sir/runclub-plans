@@ -350,8 +350,9 @@
     transform: translateY(-4px);
     box-shadow: 0 16px 48px rgba(0,0,0,0.45);
   }
-  .edu-card.zone2:hover  { border-color: var(--green); }
-  .edu-card.pyramid:hover { border-color: var(--teal); }
+  .edu-card.zone2:hover    { border-color: var(--green); }
+  .edu-card.pyramid:hover  { border-color: var(--teal); }
+  .edu-card.recovery:hover { border-color: #1A4FA0; }
 
   .edu-card-top {
     display: flex;
@@ -369,8 +370,9 @@
     font-size: 22px;
     flex-shrink: 0;
   }
-  .zone2 .edu-icon   { background: rgba(58,125,68,0.15); }
-  .pyramid .edu-icon { background: rgba(10,123,108,0.15); }
+  .zone2 .edu-icon     { background: rgba(58,125,68,0.15); }
+  .pyramid .edu-icon   { background: rgba(10,123,108,0.15); }
+  .recovery .edu-icon  { background: rgba(26,79,160,0.12); }
 
   .edu-tag {
     font-size: 9px;
@@ -380,8 +382,9 @@
     padding: 4px 10px;
     border-radius: 99px;
   }
-  .zone2 .edu-tag   { background: rgba(58,125,68,0.15); color: var(--green-mid); }
-  .pyramid .edu-tag { background: rgba(10,123,108,0.15); color: var(--teal-mid); }
+  .zone2 .edu-tag      { background: rgba(58,125,68,0.15); color: var(--green-mid); }
+  .pyramid .edu-tag    { background: rgba(10,123,108,0.15); color: var(--teal-mid); }
+  .recovery .edu-tag   { background: rgba(26,79,160,0.12); color: #6A9FE0; }
 
   .edu-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -412,12 +415,14 @@
   }
   .zone2 .edu-read   { color: var(--green-mid); }
   .pyramid .edu-read { color: var(--teal-mid); }
+  .recovery .edu-read { color: #6A9FE0; }
   .edu-arrow {
     font-size: 14px;
     transition: transform 0.2s;
   }
   .zone2 .edu-arrow   { color: var(--green-mid); }
   .pyramid .edu-arrow { color: var(--teal-mid); }
+  .recovery .edu-arrow { color: #6A9FE0; }
   .edu-card:hover .edu-arrow { transform: translateX(5px); }
 
   /* ── MANTRA STRIP ── */
@@ -882,6 +887,19 @@
       <p class="edu-desc">A visual breakdown of how aerobic base, strength, intervals, and peak speed stack on top of each other — and why you can't skip the bottom.</p>
       <div class="edu-footer">
         <span class="edu-read">View pyramid</span>
+        <span class="edu-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="edu-card recovery" href="recovery.html">
+      <div class="edu-card-top">
+        <div class="edu-icon">🌙</div>
+        <span class="edu-tag">Off the Clock</span>
+      </div>
+      <div class="edu-title">Recovery & Lifestyle</div>
+      <p class="edu-desc">Sleep, stress, and nutrition — the 23 hours outside your run that determine whether the training actually sticks. The most overlooked part of getting faster.</p>
+      <div class="edu-footer">
+        <span class="edu-read">Read guide</span>
         <span class="edu-arrow">→</span>
       </div>
     </a>
