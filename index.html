@@ -574,6 +574,124 @@
     white-space: nowrap;
   }
 
+  /* ── PHILOSOPHY SECTION ── */
+  .philosophy {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .phil-header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+  .phil-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .phil-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 7vw, 56px);
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .phil-sub {
+    font-size: 14px;
+    color: var(--muted2);
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .phil-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .pillar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: border-color 0.2s;
+  }
+  .pillar:hover { border-color: var(--border2); }
+  .pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .pillar-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+  .pillar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .pillar-title span { color: var(--green-mid); }
+  .pillar-body {
+    font-size: 13px;
+    color: var(--muted2);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+  .pillar-body strong { color: var(--text); font-weight: 500; }
+  .phil-floris {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .phil-floris-icon {
+    font-size: 48px;
+    flex-shrink: 0;
+  }
+  .phil-floris-text { flex: 1; min-width: 200px; }
+  .phil-floris-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 8px;
+  }
+  .phil-floris-quote {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: clamp(15px, 2.5vw, 18px);
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .phil-floris-credit {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+  .phil-floris-credit a {
+    color: var(--green-mid);
+    text-decoration: none;
+  }
+  .phil-floris-credit a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .phil-pillars { grid-template-columns: 1fr; }
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -609,12 +727,59 @@
       Train easy. Breathe easy. Race easy.<br>
       Everything your club needs — all in one place.
     </p>
-    <a class="hero-scroll" href="#plans">
+    <a class="hero-scroll" href="#why">
       <span class="hero-scroll-label">Explore</span>
       <span class="hero-scroll-arrow">↓</span>
     </a>
   </div>
 </section>
+
+<!-- ══ PHILOSOPHY ══ -->
+<div class="philosophy" id="why">
+  <div class="phil-header">
+    <div class="phil-tag">Why We Train This Way</div>
+    <div class="phil-heading">The method<br>behind the club</div>
+    <p class="phil-sub">Most runners get winded because they always run at the same medium effort — too hard to build aerobic fitness, too easy to build real speed. We train differently.</p>
+  </div>
+
+  <div class="phil-pillars">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <span class="pillar-icon">🫀</span>
+      <div class="pillar-title">Zone 2 <span>First</span></div>
+      <div class="pillar-body">80% of every week is easy, aerobic running — slow enough to hold a full conversation. This builds your mitochondria, fat-burning engine, and cardiac output. <strong>The base is everything.</strong></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <span class="pillar-icon">📉</span>
+      <div class="pillar-title">The <span>MAF Formula</span></div>
+      <div class="pillar-body">Take 180 and subtract your age. That's your personal heart rate ceiling for every easy run. Stay under it and your aerobic engine grows. <strong>Cross it and you're in the grey zone.</strong></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <span class="pillar-icon">🚶</span>
+      <div class="pillar-title">Walk Breaks <span>Are Strategy</span></div>
+      <div class="pillar-body">If your heart rate climbs above your MAF number, walk until it comes back down. Walking at a brisk pace is still Zone 2. <strong>It's not failure — it's correct execution.</strong></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <span class="pillar-icon">⏳</span>
+      <div class="pillar-title">Speed Follows <span>Patience</span></div>
+      <div class="pillar-body">After 6–8 weeks of easy running, the same effort that once left you gasping will feel comfortable. After 3–6 months, the transformation is significant. <strong>Trust the slow to earn the fast.</strong></div>
+    </div>
+  </div>
+
+  <div class="phil-floris">
+    <div class="phil-floris-icon">🎙️</div>
+    <div class="phil-floris-text">
+      <div class="phil-floris-label">Inspired by</div>
+      <div class="phil-floris-quote">"The single biggest mistake most runners make is running too fast on their easy days. Slow down, build the base, and the speed will come on its own."</div>
+      <div class="phil-floris-credit">Floris Gierman — RRCA certified coach, host of the Extramilest podcast, MAF method coach · <a href="https://extramilest.com" target="_blank">extramilest.com</a></div>
+    </div>
+  </div>
+</div>
+
+<hr style="border:none; border-top: 1px solid var(--border); max-width:900px; margin: 0 auto;">
 
 <!-- ══ TRAINING PLANS ══ -->
 <section class="section" id="plans">
