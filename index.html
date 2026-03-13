@@ -20,17 +20,17 @@
 <meta name="twitter:title" content="Run Not Gasp Run Club">
 <meta name="twitter:description" content="East Bay run club training the Zone 2 way. Free training plans, Saturday meetups, and everything you need to run without getting winded.">
 <meta name="twitter:image" content="https://rng-runclub.netlify.app/preview.png">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0D0D0D;
-    --surface: #131110;
-    --surface2: #1A1712;
-    --border: #242018;
-    --border2: #2E2820;
+    --surface: #0F1218;
+    --surface2: #141820;
+    --border: #1E2330;
+    --border2: #252D3E;
     --text: #F5F2EC;
-    --muted: #4A4540;
-    --muted2: #6A6258;
+    --muted: #4A4F5C;
+    --muted2: #6A7080;
     --green: #3A7D44;
     --green-mid: #5DBF72;
     --green-pale: rgba(58,125,68,0.12);
@@ -40,6 +40,10 @@
     --teal: #0A7B6C;
     --teal-mid: #2ABBA8;
     --teal-pale: rgba(10,123,108,0.1);
+    --blue: #1A4FA0;
+    --blue-mid: #3B7DD8;
+    --blue-bright: #5B9FFF;
+    --blue-pale: rgba(26,79,160,0.15);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,14 +52,66 @@
 
   body {
     background: var(--bg);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Barlow', sans-serif;
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
   }
 
-  /* ── HERO ── */
-  .hero {
+  /* ── NAV ── */
+  .site-nav {
+    background: rgba(13,13,13,0.95);
+    backdrop-filter: blur(12px);
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .nav-logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    line-height: 1;
+  }
+  .nav-logo-text span { color: var(--blue-bright); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .nav-link {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-link:hover { color: var(--blue-bright); }
+  @media (max-width: 560px) {
+    .nav-links { display: none; }
+  }
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -72,7 +128,7 @@
     position: fixed;
     inset: 0;
     background:
-      radial-gradient(ellipse at 15% 60%, rgba(58,125,68,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 15% 60%, rgba(26,79,160,0.2) 0%, transparent 55%),
       radial-gradient(ellipse at 85% 20%, rgba(196,68,10,0.08) 0%, transparent 45%),
       radial-gradient(ellipse at 50% 90%, rgba(10,123,108,0.08) 0%, transparent 50%);
     pointer-events: none;
@@ -86,7 +142,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(160px, 38vw, 420px);
     color: rgba(255,255,255,0.022);
     letter-spacing: -0.04em;
@@ -110,7 +166,7 @@
     font-weight: 600;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--green-mid);
+    color: var(--blue-bright);
     margin-bottom: 24px;
     animation: fadeUp 0.8s ease both;
   }
@@ -118,20 +174,22 @@
     content: '';
     width: 24px;
     height: 1px;
-    background: var(--green-mid);
+    background: var(--blue-bright);
     opacity: 0.5;
   }
 
   .hero-name {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(80px, 22vw, 160px);
+    font-weight: 900;
     line-height: 0.85;
     letter-spacing: 0.02em;
     margin-bottom: 28px;
     animation: fadeUp 0.8s ease 0.1s both;
+    text-transform: uppercase;
   }
   .hero-name .line1 { display: block; color: var(--text); }
-  .hero-name .line2 { display: block; color: var(--green-mid); }
+  .hero-name .line2 { display: block; color: var(--blue-bright); }
 
   .hero-tagline {
     font-family: 'Lora', serif;
@@ -172,8 +230,8 @@
     animation: bounce 2s ease infinite 1.5s;
   }
   .hero-scroll:hover .hero-scroll-arrow {
-    border-color: var(--green-mid);
-    color: var(--green-mid);
+    border-color: var(--blue-bright);
+    color: var(--blue-bright);
     transform: translateY(4px);
     animation: none;
   }
@@ -203,7 +261,7 @@
     margin-bottom: 10px;
   }
   .section-heading {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(36px, 7vw, 56px);
     letter-spacing: 0.02em;
     line-height: 0.95;
@@ -278,7 +336,7 @@
   .orange .plan-level { background: rgba(196,68,10,0.2); color: var(--orange-mid); }
 
   .plan-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 32px;
     letter-spacing: 0.02em;
     color: var(--text);
@@ -301,12 +359,12 @@
   }
   .plan-stat { }
   .plan-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 22px;
     letter-spacing: 0.04em;
     line-height: 1;
   }
-  .green .plan-stat-num { color: var(--green-mid); }
+  .green .plan-stat-num { color: var(--blue-bright); }
   .orange .plan-stat-num { color: var(--orange-mid); }
   .plan-stat-label {
     font-size: 9px;
@@ -330,13 +388,13 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-  .green .plan-cta { color: var(--green-mid); }
+  .green .plan-cta { color: var(--blue-bright); }
   .orange .plan-cta { color: var(--orange-mid); }
   .plan-arrow {
     font-size: 16px;
     transition: transform 0.2s;
   }
-  .green .plan-arrow { color: var(--green-mid); }
+  .green .plan-arrow { color: var(--blue-bright); }
   .orange .plan-arrow { color: var(--orange-mid); }
   .plan-card:hover .plan-arrow { transform: translateX(5px); }
 
@@ -411,7 +469,7 @@
   .faq .edu-tag        { background: rgba(13,43,26,0.1); color: #2E7D44; }
 
   .edu-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 28px;
     letter-spacing: 0.02em;
     color: var(--text);
@@ -457,7 +515,7 @@
 
   /* ── MANTRA STRIP ── */
   .mantra {
-    background: var(--green);
+    background: var(--blue);
     padding: 56px 24px;
     text-align: center;
     position: relative;
@@ -469,7 +527,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(80px, 18vw, 180px);
     color: rgba(255,255,255,0.06);
     white-space: nowrap;
@@ -487,7 +545,7 @@
     position: relative;
   }
   .mantra-sub {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Barlow', sans-serif;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.2em;
@@ -504,13 +562,13 @@
     border-top: 1px solid var(--border);
   }
   .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 28px;
     letter-spacing: 0.06em;
     color: var(--text);
     margin-bottom: 8px;
   }
-  .footer-logo span { color: var(--green-mid); }
+  .footer-logo span { color: var(--blue-bright); }
   .footer-line {
     font-size: 11px;
     color: var(--muted);
@@ -547,10 +605,10 @@
     display: block;
   }
   .meetup-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 42px;
     letter-spacing: 0.04em;
-    color: var(--green-mid);
+    color: var(--blue-bright);
     line-height: 1;
     margin-bottom: 4px;
   }
@@ -628,7 +686,7 @@
     margin-bottom: 10px;
   }
   .phil-heading {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(36px, 7vw, 56px);
     letter-spacing: 0.02em;
     line-height: 0.95;
@@ -658,7 +716,7 @@
   }
   .pillar:hover { border-color: var(--border2); }
   .pillar-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 13px;
     letter-spacing: 0.16em;
     color: var(--muted);
@@ -666,14 +724,14 @@
   }
   .pillar-icon { font-size: 28px; margin-bottom: 14px; display: block; }
   .pillar-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 22px;
     letter-spacing: 0.04em;
     color: var(--text);
     line-height: 1.1;
     margin-bottom: 10px;
   }
-  .pillar-title span { color: var(--green-mid); }
+  .pillar-title span { color: var(--blue-bright); }
   .pillar-body {
     font-size: 13px;
     color: var(--muted2);
@@ -701,7 +759,7 @@
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--green-mid);
+    color: var(--blue-bright);
     margin-bottom: 8px;
   }
   .phil-floris-quote {
@@ -718,7 +776,7 @@
     font-weight: 300;
   }
   .phil-floris-credit a {
-    color: var(--green-mid);
+    color: var(--blue-bright);
     text-decoration: none;
   }
   .phil-floris-credit a:hover { text-decoration: underline; }
@@ -751,14 +809,14 @@
     padding: 4px 10px;
     border-radius: 99px;
     background: var(--green-pale);
-    color: var(--green-mid);
+    color: var(--blue-bright);
   }
   .playlist-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 28px;
     letter-spacing: 0.04em;
     line-height: 1;
-    color: var(--green-mid);
+    color: var(--blue-bright);
   }
   .playlist-desc {
     font-size: 14px;
@@ -779,7 +837,7 @@
     transition: opacity 0.15s, transform 0.15s;
     width: fit-content;
     background: var(--green-pale);
-    color: var(--green-mid);
+    color: var(--blue-bright);
   }
   .playlist-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
@@ -808,6 +866,20 @@
 </style>
 </head>
 <body>
+
+<!-- ══ NAV ══ -->
+<nav class="site-nav">
+  <a class="nav-logo-wrap" href="#top">
+    <div class="nav-logo-text">Run Not Gasp <span>Run Club</span></div>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#plans">Plans</a>
+    <a class="nav-link" href="#why">Method</a>
+    <a class="nav-link" href="#learn">Learn</a>
+    <a class="nav-link" href="#music">Music</a>
+    <a class="nav-link" href="#meetup">Meetup</a>
+  </div>
+</nav>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="top">
