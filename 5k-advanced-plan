@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced 5K Plan — Run Not Gasp Run Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EE;
+    --ink: #1C1A16;
+    --muted: #8A8070;
+    --card: #FFFFFF;
+    --border: #E4DDD0;
+    --orange: #C4440A;
+    --orange-mid: #E05A20;
+    --orange-light: #FEF0E8;
+    --orange-pale: #FFF8F5;
+    --green: #3A7D44;
+    --green-light: #EAF5EC;
+    --amber: #D97706;
+    --amber-light: #FEF3C7;
+    --red: #B91C1C;
+    --red-light: #FEE2E2;
+    --blue: #1A4FA0;
+    --blue-light: #EFF6FF;
+    --purple: #6D28D9;
+    --purple-light: #F5F3FF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: #1C1A16;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #F7F4EE;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--orange-mid); }
+  .nav-back {
+    font-size: 12px;
+    font-weight: 500;
+    color: #5A5248;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.15s;
+  }
+  .nav-back:hover { color: var(--orange-mid); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    padding: 64px 32px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg, transparent, transparent 18px,
+      rgba(255,255,255,0.02) 18px, rgba(255,255,255,0.02) 19px
+    );
+  }
+  .hero::after {
+    content: 'ADV';
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 200px;
+    color: rgba(196,68,10,0.06);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange-mid);
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 7vw, 72px);
+    font-weight: 800;
+    color: #F7F4EE;
+    line-height: 0.95;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero-title span { color: var(--orange-mid); }
+  .hero-sub {
+    font-size: 15px;
+    color: #8A8070;
+    font-weight: 300;
+    max-width: 440px;
+    margin: 0 auto 32px;
+    line-height: 1.65;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #F7F4EE;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #5A5248;
+    margin-top: 4px;
+  }
+
+  /* ── PRINCIPLE BAR ── */
+  .principle-bar {
+    background: var(--orange);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .principle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.04em;
+  }
+  .principle-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.6); flex-shrink:0; }
+
+  /* ── MAIN ── */
+  .main { max-width: 960px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── PREREQS ── */
+  .prereq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .prereq-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .prereq-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--green-light);
+    border: 1px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 11px; color: var(--green); font-weight: 700;
+  }
+  .prereq-text { font-size: 13px; color: var(--ink); line-height: 1.6; font-weight: 300; }
+  .prereq-text strong { font-weight: 600; color: var(--ink); }
+
+  /* ── INTENSITY KEY ── */
+  .intensity-key {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .intensity-key-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .intensity-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .intensity-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── PHASE TABS ── */
+  .phase-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .phase-tab {
+    padding: 7px 16px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .phase-tab.active { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .phase-tab:hover:not(.active) { border-color: var(--orange); color: var(--orange); }
+
+  /* ── WEEK TABS ── */
+  .week-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .tab {
+    padding: 7px 14px;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tab:hover { border-color: var(--orange); color: var(--orange); }
+  .tab.active { background: var(--ink); border-color: var(--ink); color: #F7F4EE; }
+  .tab.recovery { background: var(--green-light); border-color: var(--green); color: var(--green); }
+  .tab.race { background: var(--red-light); border-color: var(--red); color: var(--red); }
+
+  /* ── PHASE PANEL ── */
+  .phase-panel { display: none; }
+  .phase-panel.active { display: block; animation: fadeIn 0.25s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── WEEK CARD ── */
+  .week-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: none;
+    animation: fadeIn 0.25s ease;
+  }
+  .week-card.active { display: block; }
+
+  .week-header {
+    padding: 22px 28px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .week-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .week-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .week-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+  .week-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .badge-base { background: var(--orange-light); color: var(--orange); border: 1px solid rgba(196,68,10,0.2); }
+  .badge-build { background: var(--amber-light); color: var(--amber); border: 1px solid rgba(217,119,6,0.2); }
+  .badge-peak { background: var(--red-light); color: var(--red); border: 1px solid rgba(185,28,28,0.2); }
+  .badge-recovery { background: var(--green-light); color: var(--green); border: 1px solid rgba(58,125,68,0.2); }
+  .badge-race { background: var(--purple-light); color: var(--purple); border: 1px solid rgba(109,40,217,0.2); }
+  .badge-taper { background: var(--blue-light); color: var(--blue); border: 1px solid rgba(26,79,160,0.2); }
+
+  /* ── DAY GRID ── */
+  .day-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+  .day-col {
+    padding: 16px 10px;
+    border-right: 1px solid var(--border);
+    min-height: 120px;
+  }
+  .day-col:last-child { border-right: none; }
+  .day-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .day-type {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .type-easy { background: var(--green-light); color: var(--green); }
+  .type-tempo { background: var(--amber-light); color: var(--amber); }
+  .type-interval { background: var(--orange-light); color: var(--orange); }
+  .type-long { background: var(--blue-light); color: var(--blue); }
+  .type-rest { background: var(--bg); color: var(--muted); }
+  .type-race { background: var(--red-light); color: var(--red); }
+  .type-club { background: #F0F5FC; color: var(--blue); }
+  .type-strides { background: var(--purple-light); color: var(--purple); }
+  .day-workout {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .day-detail {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* ── WEEK NOTES ── */
+  .week-notes {
+    padding: 20px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .note-block {}
+  .note-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .note-list { display: flex; flex-direction: column; gap: 6px; }
+  .note-item {
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 300;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .note-item::before { content: '→'; color: var(--orange); flex-shrink: 0; font-weight: 600; font-size: 11px; margin-top: 1px; }
+
+  /* ── WEEK FOOTER ── */
+  .week-footer {
+    padding: 14px 28px;
+    background: var(--bg);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .wf-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .wf-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ── MAF REMINDER ── */
+  .maf-bar {
+    background: var(--ink);
+    border-radius: 12px;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .maf-bar-icon { font-size: 20px; flex-shrink: 0; }
+  .maf-bar-text { font-size: 13px; color: rgba(247,244,238,0.7); line-height: 1.6; font-weight: 300; flex: 1; }
+  .maf-bar-text strong { color: #F7F4EE; font-weight: 600; }
+  .maf-bar-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--orange-mid);
+    flex-shrink: 0;
+  }
+  .maf-bar-num span { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+  /* ── RACE STRATEGY ── */
+  .race-strategy {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .race-strategy-head {
+    background: var(--ink);
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .rsh-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #F7F4EE;
+  }
+  .rsh-sub { font-size: 12px; color: #5A5248; }
+  .race-phases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+  .race-phase {
+    padding: 20px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .race-phase:last-child { border-right: none; }
+  .rp-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .rp-time {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .rp-hr { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .rp-desc { font-size: 12px; color: var(--ink); line-height: 1.55; font-weight: 300; }
+  .race-rule {
+    padding: 16px 28px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .race-rule strong { color: var(--orange); font-style: normal; font-weight: 600; }
+
+  /* ── WORKOUT GLOSSARY ── */
+  .glossary {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .glossary-head {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .glossary-item {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  .glossary-item:nth-child(even) { border-right: none; }
+  .glossary-item:nth-last-child(-n+2) { border-bottom: none; }
+  .gl-type {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .gl-name { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .gl-desc { font-size: 12px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    padding: 32px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #F7F4EE;
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  .footer-logo span { color: var(--orange-mid); }
+  .footer-sub { font-size: 12px; color: #4A4540; }
+
+  @media (max-width: 640px) {
+    .prereq-grid { grid-template-columns: 1fr; }
+    .day-grid { grid-template-columns: repeat(4, 1fr); }
+    .day-col:nth-child(5), .day-col:nth-child(6), .day-col:nth-child(7) { display: none; }
+    .week-notes { grid-template-columns: 1fr; }
+    .race-phases { grid-template-columns: 1fr 1fr; }
+    .glossary-grid { grid-template-columns: 1fr; }
+    .glossary-item { border-right: none !important; }
+    .main { padding: 28px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html">Run! Not Gasp <span>Run Club</span></a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Run Not Gasp Run Club · Advanced Training</div>
+    <h1 class="hero-title">Advanced <span>5K Plan</span></h1>
+    <p class="hero-sub">16 weeks of structured training combining MAF aerobic base, tempo runs, intervals, and race-specific work — built for runners who are ready to push beyond comfortable.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">16</div>
+        <div class="hero-stat-label">Weeks</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">Runs/week peak</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">80%</div>
+        <div class="hero-stat-label">Zone 2 always</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5K</div>
+        <div class="hero-stat-label">Race day</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLE BAR -->
+<div class="principle-bar">
+  <div class="principle"><div class="principle-dot"></div>MAF base always first</div>
+  <div class="principle"><div class="principle-dot"></div>Never two hard days in a row</div>
+  <div class="principle"><div class="principle-dot"></div>Walk if HR exceeds MAF on easy days</div>
+  <div class="principle"><div class="principle-dot"></div>Negative split every race</div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- PREREQS -->
+  <div class="section-title">Who This Plan Is For</div>
+  <div class="prereq-grid">
+    <div class="prereq-card">
+      <div class="prereq-check">✓</div>
+      <div class="prereq-text"><strong>Running consistently for at least 3 months.</strong> You can run 30 minutes continuously without stopping. This plan assumes a real aerobic base already exists.</div>
+    </div>
+    <div class="prereq-card">
+      <div class="prereq-check">✓</div>
+      <div class="prereq-text"><strong>Completed a beginner or intermediate plan.</strong> You understand Zone 2, have run club sessions under your belt, and your body is used to regular running load.</div>
+    </div>
+    <div class="prereq-card">
+      <div class="prereq-check">✓</div>
+      <div class="prereq-text"><strong>No active injuries.</strong> Speedwork and intervals put significantly more load on tendons and joints. Start the injury prevention protocols for at least 4 weeks before beginning this plan.</div>
+    </div>
+    <div class="prereq-card">
+      <div class="prereq-check">✓</div>
+      <div class="prereq-text"><strong>Know your MAF heart rate.</strong> Use the calculator on the MAF page — 180 minus your age with adjustments. Every easy day in this plan stays under that number.</div>
+    </div>
+  </div>
+
+  <!-- MAF REMINDER -->
+  <div class="maf-bar">
+    <div class="maf-bar-icon">❤️</div>
+    <div class="maf-bar-text"><strong>Easy runs never change.</strong> No matter how advanced the plan gets, easy days stay at or below your MAF heart rate. 80% of all running is Zone 2. The speedwork only works because the base underneath it is solid.</div>
+    <div class="maf-bar-num">MAF <span>formula →</span></div>
+  </div>
+
+  <!-- INTENSITY KEY -->
+  <div class="intensity-key">
+    <div class="intensity-key-title">Intensity key</div>
+    <div class="intensity-item"><div class="intensity-dot" style="background:#3A7D44;"></div>Easy / Zone 2 — conversational pace ≤MAF bpm</div>
+    <div class="intensity-item"><div class="intensity-dot" style="background:#D97706;"></div>Tempo — comfortably hard, threshold pace</div>
+    <div class="intensity-item"><div class="intensity-dot" style="background:#C4440A;"></div>Intervals — hard, race pace or faster</div>
+    <div class="intensity-item"><div class="intensity-dot" style="background:#1A4FA0;"></div>Long run — easy, extended duration</div>
+    <div class="intensity-item"><div class="intensity-dot" style="background:#6D28D9;"></div>Strides — 20 sec accelerations</div>
+    <div class="intensity-item"><div class="intensity-dot" style="background:#B91C1C;"></div>Race day</div>
+  </div>
+
+  <!-- PHASE TABS -->
+  <div class="section-title">16-Week Training Plan</div>
+  <div class="phase-tabs">
+    <div class="phase-tab active" onclick="switchPhase(0)">Phase 1 — Base (W1–4)</div>
+    <div class="phase-tab" onclick="switchPhase(1)">Phase 2 — Build (W5–8)</div>
+    <div class="phase-tab" onclick="switchPhase(2)">Phase 3 — Peak (W9–12)</div>
+    <div class="phase-tab" onclick="switchPhase(3)">Phase 4 — Race (W13–16)</div>
+  </div>
+
+  <!-- ══ PHASE 1 ══ -->
+  <div class="phase-panel active" id="phase-0">
+    <div style="background:var(--orange-light); border:1px solid rgba(196,68,10,0.15); border-radius:10px; padding:14px 18px; margin-bottom:16px; font-size:13px; color:var(--orange); font-weight:400;">
+      <strong style="font-weight:600;">Phase 1 — Aerobic Base:</strong> Establish consistent mileage. Introduce strides. All easy runs strictly at MAF. No intervals yet. Build the engine before the speed.
+    </div>
+    <div class="week-tabs" id="tabs-0">
+      <div class="tab active" onclick="switchWeek(0,0)">Week 1</div>
+      <div class="tab" onclick="switchWeek(0,1)">Week 2</div>
+      <div class="tab" onclick="switchWeek(0,2)">Week 3</div>
+      <div class="tab recovery" onclick="switchWeek(0,3)">Week 4 ↓</div>
+    </div>
+
+    <!-- W1 -->
+    <div class="week-card active" id="p0w0">
+      <div class="week-header">
+        <div><div class="week-num">Phase 1 · Week 1</div><div class="week-title">Setting the Baseline</div><div class="week-subtitle">Learn your MAF pace. Run easy. Don't race the easy days.</div></div>
+        <span class="week-badge badge-base">Base Building</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col">
+          <div class="day-name">Mon</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Injury prevention work. McGill Big Three.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Tue</div>
+          <div class="day-type type-easy">Easy</div>
+          <div class="day-workout">30 min easy</div>
+          <div class="day-detail">≤MAF bpm. Conversational the entire run. Walk if needed.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Wed</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Stretching + mobility.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Thu</div>
+          <div class="day-type type-easy">Easy</div>
+          <div class="day-workout">35 min easy</div>
+          <div class="day-detail">≤MAF bpm. Add 4–6 strides at end. 20 sec each, walk back.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Fri</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Sleep well.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sat</div>
+          <div class="day-type type-club">Club Run</div>
+          <div class="day-workout">40 min easy</div>
+          <div class="day-detail">Run club. MAF pace. Talk to your partner the whole run.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sun</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Non-negotiable recovery.</div>
+        </div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block">
+          <div class="note-label">Key focus</div>
+          <div class="note-list">
+            <div class="note-item">Lock in your MAF heart rate and learn what it feels like to run at it</div>
+            <div class="note-item">Strides on Thursday — gentle accelerations, not sprints. Relax into them.</div>
+            <div class="note-item">This week should feel comfortable — you're setting the baseline</div>
+          </div>
+        </div>
+        <div class="note-block">
+          <div class="note-label">Weekly totals</div>
+          <div class="note-list">
+            <div class="note-item">Total easy running: ~105 minutes</div>
+            <div class="note-item">Hard sessions: 0</div>
+            <div class="note-item">Long run equivalent: Saturday club run 40 min</div>
+          </div>
+        </div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--purple);"></div>Strides Thursday</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--border);"></div>3 rest days</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--orange); font-weight:600;">~105 min total</span>
+      </div>
+    </div>
+
+    <!-- W2 -->
+    <div class="week-card" id="p0w1">
+      <div class="week-header">
+        <div><div class="week-num">Phase 1 · Week 2</div><div class="week-title">Adding Hill Repeats</div><div class="week-subtitle">First taste of intensity — hills are lower impact than flat intervals.</div></div>
+        <span class="week-badge badge-base">Base Building</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col">
+          <div class="day-name">Mon</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Injury prevention work.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Tue</div>
+          <div class="day-type type-easy">Easy</div>
+          <div class="day-workout">30 min easy</div>
+          <div class="day-detail">≤MAF bpm. Fully conversational.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Wed</div>
+          <div class="day-type type-interval">Hills</div>
+          <div class="day-workout">Hill repeats</div>
+          <div class="day-detail">10 min warmup. 6 × 45 sec uphill hard. Jog back down. 10 min cooldown.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Thu</div>
+          <div class="day-type type-easy">Easy</div>
+          <div class="day-workout">30 min easy</div>
+          <div class="day-detail">≤MAF bpm. Recovery from hills. Easy means easy.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Fri</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Sleep well.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sat</div>
+          <div class="day-type type-club">Club Run</div>
+          <div class="day-workout">40 min easy</div>
+          <div class="day-detail">MAF pace. Club run — strides at end if feeling good.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sun</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Non-negotiable.</div>
+        </div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block">
+          <div class="note-label">Hill repeat guide</div>
+          <div class="note-list">
+            <div class="note-item">Find a hill with 6–8% grade. 45 seconds up at hard but controlled effort.</div>
+            <div class="note-item">Walk or jog back down — that's your full recovery. Don't rush it.</div>
+            <div class="note-item">Form focus: drive knees, stay tall, quick cadence on the way up.</div>
+          </div>
+        </div>
+        <div class="note-block">
+          <div class="note-label">Weekly totals</div>
+          <div class="note-list">
+            <div class="note-item">Total running: ~115 minutes</div>
+            <div class="note-item">Hard sessions: 1 (hills Wednesday)</div>
+            <div class="note-item">Hill repeats: 6 × 45 sec</div>
+          </div>
+        </div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>1 hill session</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--border);"></div>3 rest days</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--orange); font-weight:600;">~115 min total</span>
+      </div>
+    </div>
+
+    <!-- W3 -->
+    <div class="week-card" id="p0w2">
+      <div class="week-header">
+        <div><div class="week-num">Phase 1 · Week 3</div><div class="week-title">First Tempo Run</div><div class="week-subtitle">Short tempo introduction — 10 minutes at threshold pace.</div></div>
+        <span class="week-badge badge-base">Base Building</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col">
+          <div class="day-name">Mon</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Injury prevention work.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Tue</div>
+          <div class="day-type type-easy">Easy</div>
+          <div class="day-workout">35 min easy</div>
+          <div class="day-detail">≤MAF bpm. Strides at end — 4 × 20 sec.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Wed</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Rest or walk</div>
+          <div class="day-detail">Light movement only. Prep for Thursday tempo.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Thu</div>
+          <div class="day-type type-tempo">Tempo</div>
+          <div class="day-workout">Tempo run</div>
+          <div class="day-detail">10 min easy warmup. 10 min at tempo pace (comfortably hard). 10 min easy cooldown.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Fri</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Recovery from tempo. Sleep well.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sat</div>
+          <div class="day-type type-club">Club Run</div>
+          <div class="day-workout">40 min easy</div>
+          <div class="day-detail">MAF pace. Club run. Fully easy — legs recovering from Thursday.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sun</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Non-negotiable.</div>
+        </div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block">
+          <div class="note-label">Tempo pace guide</div>
+          <div class="note-list">
+            <div class="note-item">Tempo pace = comfortably hard. You can speak a few words but not full sentences.</div>
+            <div class="note-item">Heart rate around your lactate threshold — typically 85–90% of max HR.</div>
+            <div class="note-item">Start conservatively. The 10 min should feel hard but controlled at the end.</div>
+          </div>
+        </div>
+        <div class="note-block">
+          <div class="note-label">Weekly totals</div>
+          <div class="note-list">
+            <div class="note-item">Total running: ~120 minutes</div>
+            <div class="note-item">Hard sessions: 1 (tempo Thursday)</div>
+            <div class="note-item">Tempo volume: 10 minutes</div>
+          </div>
+        </div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--amber);"></div>1 tempo session</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--border);"></div>3 rest days</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--orange); font-weight:600;">~120 min total</span>
+      </div>
+    </div>
+
+    <!-- W4 RECOVERY -->
+    <div class="week-card" id="p0w3">
+      <div class="week-header">
+        <div><div class="week-num">Phase 1 · Week 4</div><div class="week-title">Recovery Week</div><div class="week-subtitle">Pull back volume. Let the adaptation from weeks 1–3 consolidate.</div></div>
+        <span class="week-badge badge-recovery">Recovery ↓</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col">
+          <div class="day-name">Mon</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Active recovery only.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Tue</div>
+          <div class="day-type type-easy">Easy</div>
+          <div class="day-workout">25 min easy</div>
+          <div class="day-detail">≤MAF bpm. Very relaxed. No strides this week.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Wed</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Mobility work. Stretching.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Thu</div>
+          <div class="day-type type-easy">Easy</div>
+          <div class="day-workout">25 min easy</div>
+          <div class="day-detail">≤MAF bpm. Easy the entire run.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Fri</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Sleep well.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sat</div>
+          <div class="day-type type-club">Club Run</div>
+          <div class="day-workout">30 min easy</div>
+          <div class="day-detail">Shorter club run. Easy throughout. Talk to new members.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sun</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Non-negotiable.</div>
+        </div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block">
+          <div class="note-label">Why recovery weeks matter</div>
+          <div class="note-list">
+            <div class="note-item">Adaptation happens during recovery, not during the hard sessions.</div>
+            <div class="note-item">Pulling back now prevents the cumulative fatigue that leads to injury in phase 2.</div>
+            <div class="note-item">You should finish every run this week feeling like you could have done more.</div>
+          </div>
+        </div>
+        <div class="note-block">
+          <div class="note-label">Weekly totals</div>
+          <div class="note-list">
+            <div class="note-item">Total running: ~80 minutes (25% reduction)</div>
+            <div class="note-item">Hard sessions: 0</div>
+            <div class="note-item">Focus: sleep, nutrition, mobility</div>
+          </div>
+        </div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--border);"></div>4 rest days</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--green); font-weight:600;">~80 min total — recovery</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PHASE 2 ══ -->
+  <div class="phase-panel" id="phase-1">
+    <div style="background:var(--amber-light); border:1px solid rgba(217,119,6,0.2); border-radius:10px; padding:14px 18px; margin-bottom:16px; font-size:13px; color:var(--amber); font-weight:400;">
+      <strong style="font-weight:600;">Phase 2 — Build:</strong> Introduce structured intervals. Increase tempo volume. Add a 5th run day. This is where the real work begins.
+    </div>
+    <div class="week-tabs" id="tabs-1">
+      <div class="tab active" onclick="switchWeek(1,0)">Week 5</div>
+      <div class="tab" onclick="switchWeek(1,1)">Week 6</div>
+      <div class="tab" onclick="switchWeek(1,2)">Week 7</div>
+      <div class="tab recovery" onclick="switchWeek(1,3)">Week 8 ↓</div>
+    </div>
+    <div class="week-card active" id="p1w0">
+      <div class="week-header">
+        <div><div class="week-num">Phase 2 · Week 5</div><div class="week-title">First Intervals</div><div class="week-subtitle">200m repeats at 5K pace. Short, fast, full recovery between each.</div></div>
+        <span class="week-badge badge-build">Build Phase</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col">
+          <div class="day-name">Mon</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Injury prevention work.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Tue</div>
+          <div class="day-type type-interval">Intervals</div>
+          <div class="day-workout">200m repeats</div>
+          <div class="day-detail">10 min warmup. 8 × 200m at 5K pace. 200m easy jog recovery. 10 min cooldown.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Wed</div>
+          <div class="day-type type-easy">Easy</div>
+          <div class="day-workout">30 min easy</div>
+          <div class="day-detail">≤MAF bpm. Flush the legs from Tuesday. Keep it easy.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Thu</div>
+          <div class="day-type type-tempo">Tempo</div>
+          <div class="day-workout">Tempo run</div>
+          <div class="day-detail">10 min warmup. 15 min tempo. 10 min cooldown.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Fri</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Recovery from Tue + Thu hard sessions.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sat</div>
+          <div class="day-type type-club">Club Run</div>
+          <div class="day-workout">45 min easy</div>
+          <div class="day-detail">MAF pace. Club run. Easy throughout.</div>
+        </div>
+        <div class="day-col">
+          <div class="day-name">Sun</div>
+          <div class="day-type type-rest">Rest</div>
+          <div class="day-workout">Full rest</div>
+          <div class="day-detail">Non-negotiable.</div>
+        </div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block">
+          <div class="note-label">200m interval guide</div>
+          <div class="note-list">
+            <div class="note-item">5K pace = the pace you could sustain for a full 5K race right now.</div>
+            <div class="note-item">Full recovery between each — the jog back should bring HR below 130 bpm.</div>
+            <div class="note-item">If form breaks down before rep 8, stop at 6. Quality over quantity.</div>
+          </div>
+        </div>
+        <div class="note-block">
+          <div class="note-label">Weekly totals</div>
+          <div class="note-list">
+            <div class="note-item">Total running: ~135 minutes</div>
+            <div class="note-item">Hard sessions: 2 (intervals + tempo)</div>
+            <div class="note-item">Key rule: never two hard days back to back</div>
+          </div>
+        </div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>2 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>Intervals Tue</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--amber);"></div>Tempo Thu</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--blue);"></div>Club Sat</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--orange); font-weight:600;">~135 min total</span>
+      </div>
+    </div>
+    <div class="week-card" id="p1w1">
+      <div class="week-header">
+        <div><div class="week-num">Phase 2 · Week 6</div><div class="week-title">Building Interval Volume</div><div class="week-subtitle">Move to 400m repeats. Tempo increases to 18 minutes.</div></div>
+        <span class="week-badge badge-build">Build Phase</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm. Added 5th run day this week.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-interval">Intervals</div><div class="day-workout">400m repeats</div><div class="day-detail">10 min warmup. 6 × 400m at 5K pace. 400m jog recovery. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm. Active recovery.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-tempo">Tempo</div><div class="day-workout">Tempo run</div><div class="day-detail">10 min warmup. 18 min tempo. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Recovery.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-club">Club Run</div><div class="day-workout">45 min easy</div><div class="day-detail">MAF pace. Club run.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Non-negotiable.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">Key focus</div><div class="note-list"><div class="note-item">400m repeats are the core of 5K training — long enough to build race-specific fitness, short enough to run fast.</div><div class="note-item">Tempo pace should feel the same as week 3 — comfortably hard. Duration increases, not intensity.</div></div></div>
+        <div class="note-block"><div class="note-label">Weekly totals</div><div class="note-list"><div class="note-item">Total running: ~150 minutes</div><div class="note-item">Hard sessions: 2</div><div class="note-item">5 run days this week</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>400m intervals</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--amber);"></div>18 min tempo</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--orange); font-weight:600;">~150 min total</span>
+      </div>
+    </div>
+    <div class="week-card" id="p1w2">
+      <div class="week-header">
+        <div><div class="week-num">Phase 2 · Week 7</div><div class="week-title">Peak Build Week</div><div class="week-subtitle">800m repeats introduced. Tempo hits 20 minutes. Highest volume of phase 2.</div></div>
+        <span class="week-badge badge-build">Build Phase</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-interval">Intervals</div><div class="day-workout">800m repeats</div><div class="day-detail">10 min warmup. 5 × 800m at 10K effort. 400m jog recovery. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm. Recovery run.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-tempo">Tempo</div><div class="day-workout">Tempo run</div><div class="day-detail">10 min warmup. 20 min tempo. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Recovery.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-club">Club Run</div><div class="day-workout">50 min easy</div><div class="day-detail">Longest club run. MAF pace throughout.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Non-negotiable.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">800m repeat guide</div><div class="note-list"><div class="note-item">800m at 10K effort — slightly easier than 5K pace. You should feel controlled, not desperate.</div><div class="note-item">Focus on even splits — each 800m should be the same pace, not faster-then-dying.</div></div></div>
+        <div class="note-block"><div class="note-label">Weekly totals</div><div class="note-list"><div class="note-item">Total running: ~165 minutes</div><div class="note-item">Hard sessions: 2</div><div class="note-item">Highest volume of phase 2</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>800m intervals</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--amber);"></div>20 min tempo</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--orange); font-weight:600;">~165 min total</span>
+      </div>
+    </div>
+    <div class="week-card" id="p1w3">
+      <div class="week-header">
+        <div><div class="week-num">Phase 2 · Week 8</div><div class="week-title">Recovery Week</div><div class="week-subtitle">Drop volume significantly. Let weeks 5–7 consolidate before the peak phase.</div></div>
+        <span class="week-badge badge-recovery">Recovery ↓</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Injury prevention only.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-easy">Easy</div><div class="day-workout">25 min easy</div><div class="day-detail">≤MAF bpm. Light strides at end — 4 × 20 sec.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Mobility + stretching.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-tempo">Tempo</div><div class="day-workout">Short tempo</div><div class="day-detail">10 min warmup. 12 min tempo. 10 min cooldown. Reduced volume.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Sleep well.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-club">Club Run</div><div class="day-workout">35 min easy</div><div class="day-detail">Shorter club run. Easy pace.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Non-negotiable.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">Recovery week rules</div><div class="note-list"><div class="note-item">Keep one quality session (Thursday tempo) to maintain sharpness but drop everything else.</div><div class="note-item">Sleep 7–8 hours every night this week. This is the most important adaptation tool.</div><div class="note-item">You should feel noticeably fresher by Saturday.</div></div></div>
+        <div class="note-block"><div class="note-label">Weekly totals</div><div class="note-list"><div class="note-item">Total running: ~95 minutes (~40% reduction)</div><div class="note-item">Hard sessions: 1</div><div class="note-item">Focus: rest, nutrition, sleep</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy/light runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--amber);"></div>1 short tempo</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--green); font-weight:600;">~95 min total — recovery</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PHASE 3 ══ -->
+  <div class="phase-panel" id="phase-2">
+    <div style="background:var(--red-light); border:1px solid rgba(185,28,28,0.15); border-radius:10px; padding:14px 18px; margin-bottom:16px; font-size:13px; color:var(--red); font-weight:400;">
+      <strong style="font-weight:600;">Phase 3 — Peak:</strong> Maximum quality work. Cruise intervals, race pace sessions, and peak tempo volume. Highest fitness of the plan. Race sharpening begins.
+    </div>
+    <div class="week-tabs" id="tabs-2">
+      <div class="tab active" onclick="switchWeek(2,0)">Week 9</div>
+      <div class="tab" onclick="switchWeek(2,1)">Week 10</div>
+      <div class="tab" onclick="switchWeek(2,2)">Week 11</div>
+      <div class="tab recovery" onclick="switchWeek(2,3)">Week 12 ↓</div>
+    </div>
+    <div class="week-card active" id="p2w0">
+      <div class="week-header">
+        <div><div class="week-num">Phase 3 · Week 9</div><div class="week-title">Cruise Intervals</div><div class="week-subtitle">Longer tempo intervals with short recovery — builds lactate threshold directly.</div></div>
+        <span class="week-badge badge-peak">Peak Phase</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-interval">Cruise</div><div class="day-workout">Cruise intervals</div><div class="day-detail">10 min warmup. 3 × 8 min at tempo pace, 2 min easy jog between. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm. Recovery.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-interval">Intervals</div><div class="day-workout">400m race pace</div><div class="day-detail">10 min warmup. 8 × 400m at 5K pace. 90 sec jog recovery. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Recovery.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-club">Club Run</div><div class="day-workout">50 min easy</div><div class="day-detail">MAF pace. Club run.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Non-negotiable.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">Cruise interval guide</div><div class="note-list"><div class="note-item">Cruise intervals are the most powerful lactate threshold tool in this plan.</div><div class="note-item">8 minutes at tempo with only 2 minutes recovery — unlike full tempo, you never fully recover. That's the stimulus.</div><div class="note-item">If pace drops significantly in rep 3, you went too fast in rep 1. Even splits always.</div></div></div>
+        <div class="note-block"><div class="note-label">Weekly totals</div><div class="note-list"><div class="note-item">Total running: ~170 minutes</div><div class="note-item">Hard sessions: 2 (cruise + race pace intervals)</div><div class="note-item">Peak quality week begins</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--amber);"></div>Cruise intervals</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>400m repeats</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--red); font-weight:600;">~170 min total</span>
+      </div>
+    </div>
+    <div class="week-card" id="p2w1">
+      <div class="week-header">
+        <div><div class="week-num">Phase 3 · Week 10</div><div class="week-title">Race Pace Work</div><div class="week-subtitle">1 mile repeats at goal 5K pace. The most specific workout of the plan.</div></div>
+        <span class="week-badge badge-peak">Peak Phase</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-tempo">Tempo</div><div class="day-workout">Peak tempo</div><div class="day-detail">10 min warmup. 25 min continuous tempo. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm. Recovery from tempo.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-interval">Mile reps</div><div class="day-workout">1 mile repeats</div><div class="day-detail">10 min warmup. 3 × 1 mile at 5K goal pace. 3 min jog recovery. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Recovery.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-club">Club Run</div><div class="day-workout">50 min easy</div><div class="day-detail">MAF pace. Club run.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Non-negotiable.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">Mile repeat guide</div><div class="note-list"><div class="note-item">This is the most race-specific workout in the plan. Run each mile at the exact pace you want to race at.</div><div class="note-item">3 × 1 mile at goal pace tells you whether that goal is realistic. Honest data.</div><div class="note-item">If you can't hold goal pace by rep 3, adjust your race goal accordingly.</div></div></div>
+        <div class="note-block"><div class="note-label">Weekly totals</div><div class="note-list"><div class="note-item">Total running: ~175 minutes</div><div class="note-item">Hard sessions: 2 (25 min tempo + mile reps)</div><div class="note-item">Peak fitness week</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--amber);"></div>25 min tempo</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>1 mile repeats</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--red); font-weight:600;">~175 min total — peak</span>
+      </div>
+    </div>
+    <div class="week-card" id="p2w2">
+      <div class="week-header">
+        <div><div class="week-num">Phase 3 · Week 11</div><div class="week-title">Sharpening</div><div class="week-subtitle">Fast 200s and a race simulation effort. Getting race-ready.</div></div>
+        <span class="week-badge badge-peak">Peak Phase</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-interval">Fast 200s</div><div class="day-workout">200m fast</div><div class="day-detail">10 min warmup. 10 × 200m faster than 5K pace. 200m full recovery jog. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-easy">Easy</div><div class="day-workout">25 min easy</div><div class="day-detail">≤MAF bpm. Light legs.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-tempo">Race sim</div><div class="day-workout">Race simulation</div><div class="day-detail">15 min warmup. 2 mile race effort (not all out — 95%). 15 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Recovery.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-club">Club Run</div><div class="day-workout">45 min easy</div><div class="day-detail">MAF pace. Club run. Easy.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Non-negotiable.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">Race simulation notes</div><div class="note-list"><div class="note-item">2 mile at 95% effort — not all out. Save the last 5% for race day.</div><div class="note-item">Practice your pacing strategy: first mile controlled, second mile push.</div><div class="note-item">Note your HR and pace — this predicts your 5K race pace accurately.</div></div></div>
+        <div class="note-block"><div class="note-label">Weekly totals</div><div class="note-list"><div class="note-item">Total running: ~165 minutes</div><div class="note-item">Hard sessions: 2</div><div class="note-item">Volume starts tapering</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>Fast 200s</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--red);"></div>Race simulation</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--red); font-weight:600;">~165 min total</span>
+      </div>
+    </div>
+    <div class="week-card" id="p2w3">
+      <div class="week-header">
+        <div><div class="week-num">Phase 3 · Week 12</div><div class="week-title">Recovery Week</div><div class="week-subtitle">Significant volume drop. Legs must be fresh for the final race phase.</div></div>
+        <span class="week-badge badge-recovery">Recovery ↓</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Injury prevention only.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-easy">Easy</div><div class="day-workout">25 min easy</div><div class="day-detail">≤MAF bpm. Very light strides at end.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Mobility + stretching.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-interval">Light</div><div class="day-workout">6 × 400m</div><div class="day-detail">10 min warmup. 6 × 400m at 5K pace (reduced from week 9). 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Sleep well.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-club">Club Run</div><div class="day-workout">35 min easy</div><div class="day-detail">Short club run. Easy pace.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Non-negotiable.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">Recovery week intent</div><div class="note-list"><div class="note-item">You've done the hard work. These easy days are not wasted — adaptation is still happening.</div><div class="note-item">By Saturday you should feel noticeably sharper and faster at easy pace.</div><div class="note-item">Resist the urge to add anything extra. The taper is the training.</div></div></div>
+        <div class="note-block"><div class="note-label">Weekly totals</div><div class="note-list"><div class="note-item">Total running: ~100 minutes (~40% reduction)</div><div class="note-item">Hard sessions: 1</div><div class="note-item">Entering race preparation phase</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy/light runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>6 × 400m</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--green); font-weight:600;">~100 min total — recovery</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PHASE 4 ══ -->
+  <div class="phase-panel" id="phase-3">
+    <div style="background:var(--purple-light); border:1px solid rgba(109,40,217,0.15); border-radius:10px; padding:14px 18px; margin-bottom:16px; font-size:13px; color:var(--purple); font-weight:400;">
+      <strong style="font-weight:600;">Phase 4 — Race:</strong> Two weeks sharpening, two weeks taper. Race day is week 16. Trust the training. Execute the negative split strategy.
+    </div>
+    <div class="week-tabs" id="tabs-3">
+      <div class="tab active" onclick="switchWeek(3,0)">Week 13</div>
+      <div class="tab" onclick="switchWeek(3,1)">Week 14</div>
+      <div class="tab race" onclick="switchWeek(3,2)">Week 15 — Taper</div>
+      <div class="tab race" onclick="switchWeek(3,3)">Week 16 — Race 🏁</div>
+    </div>
+    <div class="week-card active" id="p3w0">
+      <div class="week-header">
+        <div><div class="week-num">Phase 4 · Week 13</div><div class="week-title">Race Sharpening</div><div class="week-subtitle">Short fast intervals. Maintain fitness while starting to feel sharp.</div></div>
+        <span class="week-badge badge-race">Race Prep</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-easy">Easy</div><div class="day-workout">30 min easy</div><div class="day-detail">≤MAF bpm.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-interval">Fast</div><div class="day-workout">200m + 400m</div><div class="day-detail">10 min warmup. 4 × 200m fast, 4 × 400m at 5K pace, full recovery. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-easy">Easy</div><div class="day-workout">25 min easy</div><div class="day-detail">≤MAF bpm.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-tempo">Tempo</div><div class="day-workout">20 min tempo</div><div class="day-detail">10 min warmup. 20 min tempo. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Recovery.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-club">Club Run</div><div class="day-workout">40 min easy</div><div class="day-detail">MAF pace. Club run.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Non-negotiable.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">Key focus</div><div class="note-list"><div class="note-item">Maintain race sharpness without adding fatigue. Short and fast, not long and grinding.</div><div class="note-item">By end of week you should feel quick and ready — not tired.</div></div></div>
+        <div class="note-block"><div class="note-label">Weekly totals</div><div class="note-list"><div class="note-item">Total running: ~155 minutes</div><div class="note-item">Hard sessions: 2</div><div class="note-item">Volume maintained, intensity sharp</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>Mixed intervals</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--amber);"></div>20 min tempo</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--purple); font-weight:600;">~155 min total</span>
+      </div>
+    </div>
+    <div class="week-card" id="p3w1">
+      <div class="week-header">
+        <div><div class="week-num">Phase 4 · Week 14</div><div class="week-title">Final Quality Week</div><div class="week-subtitle">Last hard sessions before taper. Leave nothing on the table this week.</div></div>
+        <span class="week-badge badge-race">Race Prep</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-easy">Easy</div><div class="day-workout">25 min easy</div><div class="day-detail">≤MAF bpm.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-interval">Final rep</div><div class="day-workout">5 × 1K at pace</div><div class="day-detail">10 min warmup. 5 × 1000m at 5K goal pace. 90 sec recovery. 10 min cooldown.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-easy">Easy</div><div class="day-workout">25 min easy</div><div class="day-detail">≤MAF bpm. Light.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-tempo">Last tempo</div><div class="day-workout">15 min tempo</div><div class="day-detail">10 min warmup. 15 min tempo (reduced). 10 min cooldown. Last hard session.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Taper begins.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-club">Club Run</div><div class="day-workout">35 min easy</div><div class="day-detail">Short easy club run. Talk about race strategy.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Taper begins in earnest.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">1K repeat guide</div><div class="note-list"><div class="note-item">5 × 1000m is the closest thing to a race simulation in this plan. Treat each rep like it matters.</div><div class="note-item">Goal pace must be achievable across all 5 reps — not just the first 2.</div><div class="note-item">Thursday is the last tempo of the plan. Finish strong.</div></div></div>
+        <div class="note-block"><div class="note-label">Weekly totals</div><div class="note-list"><div class="note-item">Total running: ~140 minutes</div><div class="note-item">Last two hard sessions of the plan</div><div class="note-item">Taper begins Friday</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>5 × 1K</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--amber);"></div>Last tempo</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--purple); font-weight:600;">~140 min · last hard week</span>
+      </div>
+    </div>
+    <div class="week-card" id="p3w2">
+      <div class="week-header">
+        <div><div class="week-num">Phase 4 · Week 15</div><div class="week-title">Taper Week</div><div class="week-subtitle">Drop volume dramatically. Keep intensity. Trust the fitness you've built.</div></div>
+        <span class="week-badge badge-taper">Taper</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Last full rest before race week.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-easy">Easy</div><div class="day-workout">20 min easy</div><div class="day-detail">≤MAF bpm. Very short. Just keep the legs moving.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-interval">Sharp</div><div class="day-workout">4 × 400m</div><div class="day-detail">10 min warmup. 4 × 400m at race pace. Full recovery. 10 min cooldown. Short and sharp.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-easy">Easy</div><div class="day-workout">20 min easy</div><div class="day-detail">≤MAF bpm. Light strides at end.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Rest. Sleep 8+ hours.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-easy">Easy</div><div class="day-workout">15 min shake out</div><div class="day-detail">Very easy jog. 4 strides. Loosen up. No intensity.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Race is next Saturday. Rest completely.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">Taper rules</div><div class="note-list"><div class="note-item">Keep Wednesday sharp session — a few fast 400s prevent the legs from going flat.</div><div class="note-item">You will feel sluggish mid-week. That's the taper. It passes. Don't add extra runs.</div><div class="note-item">Eat, sleep, hydrate. That's the training this week.</div></div></div>
+        <div class="note-block"><div class="note-label">Race prep checklist</div><div class="note-list"><div class="note-item">Confirm race time, location, parking</div><div class="note-item">Lay out race kit Saturday night</div><div class="note-item">Plan your pacing strategy — negative split</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>3 easy runs</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--orange);"></div>4 × 400m sharp</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--blue); font-weight:600;">~75 min total — taper</span>
+      </div>
+    </div>
+    <div class="week-card" id="p3w3">
+      <div class="week-header">
+        <div><div class="week-num">Phase 4 · Week 16</div><div class="week-title">Race Week 🏁</div><div class="week-subtitle">The day you've been building toward. Trust the training. Race the plan.</div></div>
+        <span class="week-badge badge-race">Race Day</span>
+      </div>
+      <div class="day-grid">
+        <div class="day-col"><div class="day-name">Mon</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Rest completely. No extra runs.</div></div>
+        <div class="day-col"><div class="day-name">Tue</div><div class="day-type type-easy">Easy</div><div class="day-workout">20 min easy</div><div class="day-detail">≤MAF bpm. Strides at end — 4 × 20 sec. Last workout before race.</div></div>
+        <div class="day-col"><div class="day-name">Wed</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Walk only. Stay off your feet.</div></div>
+        <div class="day-col"><div class="day-name">Thu</div><div class="day-type type-easy">Easy</div><div class="day-workout">15 min shake out</div><div class="day-detail">Very easy. 4 strides. Just move the legs. Not a workout.</div></div>
+        <div class="day-col"><div class="day-name">Fri</div><div class="day-type type-rest">Rest</div><div class="day-workout">Full rest</div><div class="day-detail">Sleep 8+ hours. Lay out kit. Eat well.</div></div>
+        <div class="day-col"><div class="day-name">Sat</div><div class="day-type type-race">RACE DAY</div><div class="day-workout">5K Race 🏁</div><div class="day-detail">15 min warmup. 4 strides. Race. Negative split. Empty the tank at mile 2.5.</div></div>
+        <div class="day-col"><div class="day-name">Sun</div><div class="day-type type-rest">Rest</div><div class="day-workout">Recovery</div><div class="day-detail">Easy walk. Celebrate. No running for 3–5 days after race.</div></div>
+      </div>
+      <div class="week-notes">
+        <div class="note-block"><div class="note-label">Race day protocol</div><div class="note-list"><div class="note-item">Arrive 45 minutes early. 15 min easy warmup jog. 4–6 strides. Stay warm.</div><div class="note-item">Mile 1 — controlled. Let people go. Heart rate 160–165 bpm.</div><div class="note-item">Mile 2 — build. Start working. 168–174 bpm.</div><div class="note-item">Mile 3 — commit. 175–183 bpm. Don't hold back.</div><div class="note-item">Last 400m — everything. Empty the tank completely.</div></div></div>
+        <div class="note-block"><div class="note-label">Post race</div><div class="note-list"><div class="note-item">Walk for 10 minutes after finishing — don't sit down immediately.</div><div class="note-item">No hard running for 3–5 days minimum.</div><div class="note-item">Compare your time to your week 1 MAF test. The improvement tells you everything.</div></div></div>
+      </div>
+      <div class="week-footer">
+        <div class="wf-item"><div class="wf-dot" style="background:var(--green);"></div>2 easy shakeouts</div>
+        <div class="wf-item"><div class="wf-dot" style="background:var(--red);"></div>Race Saturday</div>
+        <span style="margin-left:auto; font-size:11px; color:var(--red); font-weight:600;">Race day — week 16</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RACE STRATEGY -->
+  <div class="section-title" style="margin-top:48px;">Race Day Strategy</div>
+  <div class="race-strategy">
+    <div class="race-strategy-head">
+      <div class="rsh-title">The Negative Split Plan</div>
+      <div class="rsh-sub">Run the second half faster than the first half. Every time.</div>
+    </div>
+    <div class="race-phases">
+      <div class="race-phase">
+        <div class="rp-label" style="color:var(--green);">Mile 1</div>
+        <div class="rp-time">Controlled</div>
+        <div class="rp-hr">160–165 bpm</div>
+        <div class="rp-desc">Feels almost too easy. Let people go. You'll see them again in mile 3.</div>
+      </div>
+      <div class="race-phase">
+        <div class="rp-label" style="color:var(--amber);">Mile 2</div>
+        <div class="rp-time">Build</div>
+        <div class="rp-hr">168–174 bpm</div>
+        <div class="rp-desc">Settle into race pace. Working but not suffering. Start reeling people in.</div>
+      </div>
+      <div class="race-phase">
+        <div class="rp-label" style="color:var(--orange);">Mile 3</div>
+        <div class="rp-time">Commit</div>
+        <div class="rp-hr">175–183 bpm</div>
+        <div class="rp-desc">This hurts. That's correct. Relax shoulders, quick cadence, don't fade.</div>
+      </div>
+      <div class="race-phase">
+        <div class="rp-label" style="color:var(--red);">Last 400m</div>
+        <div class="rp-time">Everything</div>
+        <div class="rp-hr">185–195 bpm</div>
+        <div class="rp-desc">Empty the tank. Leave nothing on the road. This is what 16 weeks was for.</div>
+      </div>
+    </div>
+    <div class="race-rule">The runner who wins the race isn't the one who runs the fastest first mile — it's the one who <strong>doesn't blow up.</strong> Run mile 1 like you have something to prove in mile 3.</div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="section-title">Workout Glossary</div>
+  <div class="glossary">
+    <div class="glossary-head">What every workout type means</div>
+    <div class="glossary-grid">
+      <div class="glossary-item">
+        <div class="gl-type type-easy">Easy</div>
+        <div class="gl-name">Easy / Zone 2 Run</div>
+        <div class="gl-desc">At or below your MAF heart rate. Fully conversational. Walk if needed. This is 80% of all your training.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="gl-type type-tempo">Tempo</div>
+        <div class="gl-name">Tempo Run</div>
+        <div class="gl-desc">Comfortably hard. Around your lactate threshold. You can say a few words but not hold a conversation. Builds your threshold pace.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="gl-type type-interval">Intervals</div>
+        <div class="gl-name">Interval Repeats</div>
+        <div class="gl-desc">Hard efforts at 5K pace or faster with full recovery between each rep. Builds speed and VO2 Max. Warm up and cool down required.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="gl-type type-interval">Cruise</div>
+        <div class="gl-name">Cruise Intervals</div>
+        <div class="gl-desc">Tempo pace intervals with short recovery. Unlike full tempo you never fully recover between reps. The most powerful lactate threshold stimulus.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="gl-type type-strides">Strides</div>
+        <div class="gl-name">Strides</div>
+        <div class="gl-desc">20 second gentle accelerations at end of easy runs. Not sprints — just faster turnover. Keeps legs sharp without adding fatigue.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="gl-type type-interval">Hills</div>
+        <div class="gl-name">Hill Repeats</div>
+        <div class="gl-desc">Hard uphill efforts with easy jog back down as recovery. Lower impact than flat intervals — safer for injury-prone runners. Builds leg strength and power.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Run! Not Gasp <span>Run Club</span></div>
+  <div class="footer-sub">Advanced 5K Plan · 16 Weeks · MAF method foundation · Saturdays 9am · East Bay · Free</div>
+</footer>
+
+<script>
+  function switchPhase(idx) {
+    document.querySelectorAll('.phase-tab').forEach((t,i) => t.classList.toggle('active', i === idx));
+    document.querySelectorAll('.phase-panel').forEach((p,i) => p.classList.toggle('active', i === idx));
+  }
+
+  function switchWeek(phase, week) {
+    const tabs = document.querySelectorAll(`#tabs-${phase} .tab`);
+    tabs.forEach((t,i) => t.classList.toggle('active', i === week));
+    const prefix = `p${phase}w`;
+    document.querySelectorAll(`[id^="${prefix}"]`).forEach((c,i) => c.classList.toggle('active', i === week));
+  }
+</script>
+
+</body>
+</html>
