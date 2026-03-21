@@ -337,6 +337,12 @@
   }
   .green .plan-level { background: rgba(58,125,68,0.2); color: var(--green-mid); }
   .orange .plan-level { background: rgba(196,68,10,0.2); color: var(--orange-mid); }
+  .advanced .plan-level { background: rgba(185,28,28,0.15); color: #C0392B; border: 1px solid rgba(185,28,28,0.2); }
+  .plan-card.advanced { border-color: rgba(185,28,28,0.2); }
+  .plan-card.advanced:hover { border-color: #C0392B; transform: translateY(-2px); }
+  .advanced .plan-stat-num { color: #C0392B; }
+  .advanced .plan-cta { color: #C0392B; }
+  .advanced .plan-arrow { color: #C0392B; }
 
   .plan-title {
     font-family: 'Barlow Condensed', sans-serif;
@@ -472,6 +478,10 @@
   .faq .edu-tag        { background: rgba(13,43,26,0.1); color: #2E7D44; }
   .injury .edu-tag     { background: rgba(155,32,32,0.1); color: #9B2020; }
   .edu-card.injury:hover { border-color: #9B2020; }
+  .maf .edu-tag        { background: rgba(26,79,160,0.1); color: #1A4FA0; }
+  .edu-card.maf:hover  { border-color: #1A4FA0; }
+  .uninjured .edu-tag      { background: rgba(92,58,154,0.1); color: #5C3A9A; }
+  .edu-card.uninjured:hover { border-color: #5C3A9A; }
 
   .edu-title {
     font-family: 'Barlow Condensed', sans-serif;
@@ -504,6 +514,8 @@
   .pyramid .edu-read { color: var(--teal-mid); }
   .recovery .edu-read { color: #6A9FE0; }
   .injury .edu-read   { color: #C0392B; }
+  .maf .edu-read      { color: #1A4FA0; }
+  .uninjured .edu-read { color: #5C3A9A; }
   .expect .edu-read   { color: #9A6DC8; }
   .expect .edu-read   { color: #9A6C08; }
   .faq .edu-read      { color: #2E7D44; }
@@ -515,6 +527,8 @@
   .pyramid .edu-arrow { color: var(--teal-mid); }
   .recovery .edu-arrow { color: #6A9FE0; }
   .injury .edu-arrow   { color: #C0392B; }
+  .maf .edu-arrow      { color: #1A4FA0; }
+  .uninjured .edu-arrow { color: #5C3A9A; }
   .expect .edu-arrow   { color: #9A6DC8; }
   .expect .edu-arrow   { color: #9A6C08; }
   .faq .edu-arrow      { color: #2E7D44; }
@@ -1019,6 +1033,33 @@
       </div>
     </a>
 
+    <a class="plan-card advanced" href="5k-advanced-plan.html">
+      <div class="plan-card-top">
+        <span class="plan-card-icon">⚡</span>
+        <span class="plan-level">Advanced</span>
+        <div class="plan-title">Race Ready</div>
+        <p class="plan-desc">16 weeks of structured training — intervals, tempo runs, cruise intervals, and race-specific work. Built for runners chasing a real time goal.</p>
+      </div>
+      <div class="plan-stats">
+        <div class="plan-stat">
+          <div class="plan-stat-num">16</div>
+          <div class="plan-stat-label">Weeks</div>
+        </div>
+        <div class="plan-stat">
+          <div class="plan-stat-num">5×</div>
+          <div class="plan-stat-label">Per week peak</div>
+        </div>
+        <div class="plan-stat">
+          <div class="plan-stat-num">PR</div>
+          <div class="plan-stat-label">Goal</div>
+        </div>
+      </div>
+      <div class="plan-card-footer">
+        <span class="plan-cta">View plan</span>
+        <span class="plan-arrow">→</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -1111,6 +1152,7 @@
         <span class="edu-arrow">→</span>
       </div>
     </a>
+
 
   </div>
 </section>
